@@ -1,0 +1,1394 @@
+{
+  "version": "1.0.0",
+  "exportDate": "2025-12-08T09:58:29.188Z",
+  "metadata": {
+    "appName": "ProductOwnerApp",
+    "exportType": "manual"
+  },
+  "data": {
+    "products": [
+      {
+        "id": "1760433759230",
+        "createdAt": "2025-10-14T09:22:39.230Z",
+        "status": "active",
+        "name": "SiteVitrineFonte EXEMPLE",
+        "description": "SiteVitrineFonte est une solution web clé en main conçue spécifiquement pour les TPE françaises spécialisées dans la fonderie de produits en mini-séries. Ce site vitrine vise à promouvoir l'activité de l'entreprise en mettant en valeur ses compétences en fonderie (telles que la coulée de métaux, la production de pièces sur mesure en petites quantités), ses réalisations passées et ses services personnalisés.",
+        "code": "SE",
+        "color": "#6366f1",
+        "ownerId": "1760773617608",
+        "startDate": "2025-09-01",
+        "clientIds": [
+          "1760436010260",
+          "1760725120609"
+        ],
+        "plannedEndDate": "2025-12-31",
+        "expectedEndDate": "2025-12-31",
+        "actualEndDate": "",
+        "updatedAt": "2025-10-18T07:53:43.823Z"
+      }
+    ],
+    "Objectives": [
+      {
+        "id": "1763641345779_1xgq54y8r",
+        "productId": "1760433759230",
+        "type": "Objectives",
+        "title": "Mettre en ligne le site vitrine SiteVitrineFonte",
+        "description": "Développer et déployer un site vitrine professionnel présentant l'expertise en fonderie de mini-séries, avec un design moderne, responsive et optimisé SEO. Le site comprendra les pages clés (accueil, services, réalisations, à propos, contact) et les formulaires de contact/devis.",
+        "target": null,
+        "current": null,
+        "dueDate": null,
+        "status": "active",
+        "priority": "high",
+        "targetDate": "2025-12-31",
+        "successCriteria": "Site accessible en production sur le domaine définitif\nToutes les pages principales publiées et fonctionnelles\nFormulaires de contact et devis opérationnels avec notifications email\nSite responsive (mobile, tablette, desktop)\nTemps de chargement < 3 secondes\nScore Lighthouse > 85/100",
+        "kpis": "Date de mise en ligne effective\nNombre de pages publiées : 6 minimum\nScore Google PageSpeed Insights : > 85\nTaux de disponibilité : 99.5%\"",
+        "createdAt": "2025-11-20T12:22:25.779Z",
+        "updatedAt": "2025-12-07T10:50:10.185Z"
+      }
+    ],
+    "userStories": [
+      {
+        "id": "1760446833649",
+        "createdAt": "2025-10-14T13:00:33.649Z",
+        "status": "done",
+        "outcome": "completed",
+        "outcomeReason": "",
+        "outcomeNote": "",
+        "outcomeDate": "2025-10-14T15:17:09.944Z",
+        "history": [
+          {
+            "status": "unassigned",
+            "outcome": "todo",
+            "reason": "",
+            "date": "2025-10-14T15:12:41.880Z"
+          },
+          {
+            "status": "planned",
+            "outcome": "completed",
+            "reason": "",
+            "date": "2025-10-14T15:17:09.944Z"
+          }
+        ],
+        "storyNumber": "US-001",
+        "storyTitle": "Formulaire",
+        "userRole": "utilisateur du site ",
+        "userAction": "accéder à un formulaire de devis sécurisé",
+        "userBenefit": "de disposer rapidement des informations demandées.",
+        "title": "En tant que utilisateur du site , je veux accéder à un formulaire de devis sécurisé afin de de disposer rapidement des informations demandées.",
+        "description": "En tant qu'utilisateur du site (prospect comme Antoine Leroy, ingénieur en prototypage), je souhaite un formulaire de devis intuitif et sécurisé (RGPD-compliant avec captcha et encryption) permettant d'uploader des fichiers (plans CAO, specs), de sélectionner matériaux/quantités (1-100 unités), et d'envoyer une demande pour obtenir un devis personnalisé en moins de 48h, réduisant les frictions et accélérant le processus de sourcing pour des pièces en mini-séries sans appels préalables.",
+        "acceptanceCriteria": "Le formulaire doit inclure champs obligatoires (nom, email, téléphone, description projet, upload fichier max 10MB), options dropdown pour matériaux (aluminium, bronze) et quantités, et un bouton submit avec confirmation pop-up.\nSécurité : intégration reCAPTCHA, mentions RGPD avec case à cocher, et envoi emails cryptés ; testé pour absence de vulnérabilités XSS/SQL injection via outils comme OWASP.\nTemps de réponse : notification auto au prospect (\"Demande reçue, réponse en 48h\") et alertes email/SMS au propriétaire du site.\nResponsive et rapide : formulaire fonctionnel sur mobile, chargement < 2 secondes, avec validation en temps réel des champs (ex. email format).\nTests utilisateurs : taux de complétion > 90% en simulation (pas d'erreurs bloquantes), et tracking analytics pour soumissions réussies.\nValidation par le propriétaire : au moins 2 tests end-to-end avec envoi réel, et approbation que les données capturées correspondent aux besoins (matériaux, specs).",
+        "priority": "should",
+        "productId": "1760433759230",
+        "assignedTo": "",
+        "teamId": "1760438012574",
+        "linkedNeedId": "1760444179569",
+        "estimation": 2,
+        "linkedNeedIds": [
+          "1760444179569"
+        ],
+        "updatedAt": "2025-12-01T15:33:05.061Z",
+        "sprintId": "1760448848002"
+      },
+      {
+        "id": "1760447344268",
+        "createdAt": "2025-10-14T13:09:04.268Z",
+        "status": "done",
+        "outcome": "completed",
+        "outcomeReason": "",
+        "outcomeNote": "",
+        "outcomeDate": "2025-10-18T14:07:46.052Z",
+        "history": [
+          {
+            "status": "unassigned",
+            "outcome": "completed",
+            "reason": "",
+            "date": "2025-10-14T15:15:07.445Z"
+          },
+          {
+            "sprintId": "1760449192186",
+            "status": "inProgress",
+            "outcome": "completed",
+            "reason": "",
+            "date": "2025-10-18T14:07:46.052Z"
+          }
+        ],
+        "storyNumber": "US-003",
+        "storyTitle": "Catalogue",
+        "userRole": "propriétaire du site ",
+        "userAction": "proposer toute mon offre détaillée",
+        "userBenefit": "témoigner de la largesse de mon savoir faire.",
+        "title": "En tant que propriétaire du site , je veux proposer toute mon offre détaillée afin de témoigner de la largesse de mon savoir faire.",
+        "description": "",
+        "acceptanceCriteria": "",
+        "priority": "must",
+        "productId": "1760433759230",
+        "assignedTo": "",
+        "teamId": "",
+        "linkedNeedId": "1760445690117",
+        "estimation": 2,
+        "linkedNeedIds": [
+          "1760445690117"
+        ],
+        "updatedAt": "2025-10-19T12:38:46.842Z",
+        "sprintId": "1760449192186"
+      },
+      {
+        "id": "1760447429210",
+        "createdAt": "2025-10-14T13:10:29.210Z",
+        "status": "inProgress",
+        "outcome": null,
+        "outcomeReason": null,
+        "outcomeNote": null,
+        "outcomeDate": null,
+        "history": [
+          {
+            "status": "unassigned",
+            "outcome": "todo",
+            "reason": "",
+            "date": "2025-10-14T15:12:27.498Z"
+          },
+          {
+            "status": "planned",
+            "outcome": "completed",
+            "reason": "",
+            "date": "2025-10-14T15:17:16.408Z"
+          }
+        ],
+        "storyNumber": "US-004",
+        "storyTitle": "SEO",
+        "userRole": "propriétaire du site ",
+        "userAction": "augmenter mon trafic naturel ",
+        "userBenefit": "gagner des prospects qualifiés.",
+        "title": "En tant que propriétaire du site , je veux augmenter mon trafic naturel  afin de gagner des prospects qualifiés.",
+        "description": "En tant que propriétaire du site (Marie Dupont, dirigeante de la TPE), je souhaite optimiser le référencement naturel (SEO on-page et technique) avec des mots-clés ciblés comme \"fonderie mini-série Lyon\", \"pièces coulées sur mesure France\", balises meta, structure H1-H2, et contenus enrichis (articles blog sur processus), pour améliorer le classement Google, attirer un trafic organique qualifié (prospects industriels en recherche de mini-séries), et générer plus de leads sans publicité payante, visant 300 visiteurs/mois dans les 3 mois.",
+        "acceptanceCriteria": "Intégration SEO technique : balises title/meta descriptions uniques par page (longueur 50-60 chars title, 150-160 description), sitemap.xml soumis à Google Search Console, et robots.txt configuré ; site indexé avec < 10 erreurs via audit Screaming Frog.\nMots-clés : au moins 5 principaux intégrés naturellement (densité 1-2%) dans contenus (accueil, catalogue, processus), avec recherche via Google Keyword Planner (volume > 100 recherches/mois).\nContenus optimisés : pages avec > 500 mots riches (images ALT taguées, liens internes), et section blog avec 2 articles initiaux ; score SEO on-page > 80 via outils comme SEMrush.\nPerformance : vitesse pages < 3 secondes (optimisation images, caching), mobile-first indexing validé par Google Mobile-Friendly Test.\nMesure trafic : intégration Google Analytics avec objectifs (visites organiques, sources referrals) ; rapport initial post-lancement montrant baseline, et croissance cible validée par propriétaire (rapport mensuel automatisé).\nValidation par le propriétaire : approbation des mots-clés et contenus SEO ; test de recherche Google simulant mots-clés (apparition dans top 50 initialement), et absence de pénalités (pas de keyword stuffing).",
+        "priority": "must",
+        "productId": "1760433759230",
+        "assignedTo": "",
+        "teamId": "1760438012574",
+        "linkedNeedId": "1760444204581",
+        "estimation": 5,
+        "linkedNeedIds": [
+          "1760444204581"
+        ],
+        "updatedAt": "2025-12-01T14:28:19.529Z",
+        "sprintId": "1760448946609"
+      },
+      {
+        "id": "1760447712380",
+        "createdAt": "2025-10-14T13:15:12.380Z",
+        "status": "inProgress",
+        "outcome": null,
+        "outcomeReason": null,
+        "outcomeNote": null,
+        "outcomeDate": null,
+        "history": [
+          {
+            "status": "unassigned",
+            "outcome": "completed",
+            "reason": "",
+            "date": "2025-10-14T15:17:21.781Z"
+          }
+        ],
+        "storyNumber": "US-005",
+        "storyTitle": "Budget",
+        "userRole": "propriétaire du site ",
+        "userAction": "que les conditions du contrat soit respecté",
+        "userBenefit": "maximiser mon ROI.",
+        "title": "En tant que propriétaire du site , je veux que les conditions du contrat soit respecté afin de maximiser mon ROI.",
+        "description": "Cette user story met l'accent sur l'intégration de mécanismes de suivi et de conformité dans le site vitrine (comme des clauses RGPD, des mentions légales adaptées à la TPE et un hébergement sécurisé en France) pour assurer que le prestataire respecte le budget de 5 000 €, le délai de 2 mois et les spécifications SEO/mobile. Cela inclut un dashboard simple pour le propriétaire (Marie) pour monitorer les KPIs (trafic, leads) post-lancement, évitant les dépassements et garantissant un retour sur investissement via une génération rapide de devis (cible : 10/mois).",
+        "acceptanceCriteria": "Le site inclut des pages légales (CGU, RGPD, mentions) validées par un juriste ou template conforme, sans erreurs détectées par un scan de sécurité (ex. SSL actif).\nLe budget total du projet (design, dev, photos) est tracé via un rapport final ne dépassant pas 5 000 €, avec factures détaillées.\nLe lancement respecte le délai de 2 mois max, confirmé par une date de mise en ligne et un test de performance (chargement < 3s sur mobile).\nIntégration de Google Analytics pour suivre les KPIs (300 visiteurs/mois, 10 devis via formulaire), avec un rapport automatisé accessible au propriétaire.\nTest d'utilisateur : Marie valide que le site génère un lead simulé en < 48h et que le ROI est mesurable (augmentation de 20% des demandes vs pré-lancement).\nAucune modification post-livraison sans accord écrit, avec une clause de maintenance optionnelle < 500 €/an.",
+        "priority": "must",
+        "productId": "1760433759230",
+        "assignedTo": "",
+        "teamId": "",
+        "linkedNeedId": "1760444275825",
+        "estimation": 13,
+        "linkedNeedIds": [
+          "1760444275825"
+        ],
+        "updatedAt": "2025-12-01T13:53:49.341Z",
+        "sprintId": "1760448946609"
+      },
+      {
+        "id": "1760774495014",
+        "createdAt": "2025-10-18T08:01:35.014Z",
+        "storyNumber": "US-002",
+        "storyTitle": "Design",
+        "userRole": "propriétaire du site",
+        "userAction": "un design épuré et minimaliste",
+        "userBenefit": "faciliter la navigation , améliorer la crédibilité  et bâtir la confiance avant une demande de devis.",
+        "title": "En tant que propriétaire du site, je veux un design épuré et minimaliste afin de faciliter la navigation , améliorer la crédibilité  et bâtir la confiance avant une demande de devis.",
+        "description": "",
+        "acceptanceCriteria": "Design épuré : palette couleurs neutres (tons métalliques gris/bronze, fond blanc), typographie lisible (font sans-serif), espacements généreux ; validé par test d'accessibilité (WCAG AA, contraste > 4.5:1).\nSlider homepage : au moins 5 slides auto-rotatifs (ou manuels sur mobile) avec images HD des produits, légendes courtes et boutons CTA (ex. \"Demander un devis\") ; chargement < 3 secondes, responsive sur tous devices.\nSection témoignages : carousel ou grille avec citations, noms clients, étoiles rating (4+), et photos optionnelles ; contenus fournis par le propriétaire, modifiables via CMS sans code.\nNavigation facile : menu sticky < 5 items, temps de chargement global page < 2 secondes (Google PageSpeed > 85), et heatmap tests montrant > 80% interactions sur slider/témoignages.\nValidation par le propriétaire : approbation visuelle du design mockup et contenus témoignages ; au moins 2 tests utilisateurs (taux de satisfaction > 8/10 sur facilité et confiance induite).\nSEO/Performance : balises ALT pour images slider, schema markup pour témoignages (Review schema) pour rich snippets Google.",
+        "priority": "should",
+        "productId": "1760433759230",
+        "assignedTo": "",
+        "teamId": "",
+        "linkedNeedId": "1760444261803",
+        "estimation": 3,
+        "linkedNeedIds": [
+          "1760444261803"
+        ],
+        "updatedAt": "2025-12-01T15:32:21.093Z",
+        "status": "done",
+        "outcome": "completed",
+        "outcomeReason": "",
+        "outcomeNote": "",
+        "outcomeDate": "2025-10-18T14:08:10.886Z",
+        "history": [
+          {
+            "status": "inProgress",
+            "outcome": "paused",
+            "reason": "",
+            "date": "2025-10-18T10:13:03.896Z"
+          },
+          {
+            "sprintId": "1760449192186",
+            "status": "inProgress",
+            "outcome": "completed",
+            "reason": "",
+            "date": "2025-10-18T14:08:10.886Z"
+          }
+        ],
+        "sprintId": "1760449192186"
+      },
+      {
+        "id": "1760774990868",
+        "createdAt": "2025-10-18T08:09:50.868Z",
+        "storyNumber": "US-006",
+        "storyTitle": "Processus de production",
+        "userRole": "propriétaire du site",
+        "userAction": "proposer toute mon offre détaillée",
+        "userBenefit": "mettre en avant le savoir-faire unique en mini-séries et différencier l'entreprise des concurrents industriels, renforçant la crédibilité et l'attrait pour les prospects.",
+        "title": "En tant que propriétaire du site, je veux proposer toute mon offre détaillée afin de mettre en avant le savoir-faire unique en mini-séries et différencier l'entreprise des concurrents industriels, renforçant la crédibilité et l'attrait pour les prospects.",
+        "description": "",
+        "acceptanceCriteria": "La section \"Processus de production\" doit inclure au moins 4 étapes décrites avec textes courts (100-200 mots chacune) et 2-3 images ou schémas illustratifs fournis par le client.\nLa page doit être responsive et charger en moins de 3 secondes, testé sur Google PageSpeed Insights.\nIntégration de témoignages ou cas d'études (au moins 2) liés au savoir-faire.\nValidation par le propriétaire\nAccessibilité WCAG",
+        "priority": "could",
+        "productId": "1760433759230",
+        "assignedTo": "",
+        "teamId": "1760438366338",
+        "linkedNeedId": "1760445584111",
+        "estimation": 2,
+        "linkedNeedIds": [
+          "1760445584111"
+        ],
+        "updatedAt": "2025-12-01T15:33:22.792Z",
+        "status": "done",
+        "sprintId": "1760448848002",
+        "outcome": "completed",
+        "outcomeReason": "",
+        "outcomeNote": "",
+        "outcomeDate": "2025-10-18T14:12:56.900Z",
+        "history": [
+          {
+            "sprintId": "1760448848002",
+            "status": "planned",
+            "outcome": "completed",
+            "reason": "",
+            "date": "2025-10-18T14:12:56.900Z"
+          }
+        ]
+      }
+    ],
+    "userNeeds": [
+      {
+        "id": "1760444179569",
+        "createdAt": "2025-10-14T12:16:19.569Z",
+        "stakeholderIds": [
+          "1760438495555",
+          "1760436010260",
+          "1760725120609",
+          "1760773617608"
+        ],
+        "context": "",
+        "objective": "Formulaire de devis rapide et sécurisé pour générer des leads spontanés.",
+        "importance": "high",
+        "storyPoints": 2,
+        "primaryContactId": "1760725120609",
+        "personaIds": [
+          "1760726886157"
+        ],
+        "linkedGoalId": "",
+        "productId": "1760433759230",
+        "updatedAt": "2025-11-30T16:38:19.508Z"
+      },
+      {
+        "id": "1760444204581",
+        "createdAt": "2025-10-14T12:16:44.581Z",
+        "stakeholderIds": [
+          "1760438495555",
+          "1760436010260",
+          "1760725120609",
+          "1760773617608"
+        ],
+        "context": "",
+        "objective": "Optimisation SEO et mobile pour attirer du trafic via mots-clés comme \"fonderie mini-série Lyon\".",
+        "importance": "critical",
+        "storyPoints": 5,
+        "primaryContactId": "1760725120609",
+        "personaIds": [
+          "1760726886157"
+        ],
+        "linkedGoalId": "",
+        "productId": "1760433759230",
+        "updatedAt": "2025-10-18T08:04:40.829Z"
+      },
+      {
+        "id": "1760444261803",
+        "createdAt": "2025-10-14T12:17:41.803Z",
+        "stakeholderIds": [
+          "1760438495555",
+          "1760436010260",
+          "1760725120609",
+          "1760773617608"
+        ],
+        "context": "",
+        "objective": "Design épuré inspiré de sites comme fonderie-artisanale.com, avec slider et témoignages clients.",
+        "importance": "high",
+        "storyPoints": 3,
+        "primaryContactId": "1760725120609",
+        "personaIds": [
+          "1760774221134"
+        ],
+        "linkedGoalId": "",
+        "productId": "1760433759230",
+        "updatedAt": "2025-10-18T08:02:04.720Z"
+      },
+      {
+        "id": "1760444275825",
+        "createdAt": "2025-10-14T12:17:55.825Z",
+        "stakeholderIds": [
+          "1760438495555",
+          "1760436010260",
+          "1760725120609",
+          "1760773617608"
+        ],
+        "context": "",
+        "objective": "Respect budget 5 000 € et lancement en 2 mois max, avec KPIs (10 devis/mois, 300 visiteurs).",
+        "importance": "critical",
+        "storyPoints": 13,
+        "primaryContactId": "1760725120609",
+        "personaIds": [
+          "1760726886157"
+        ],
+        "linkedGoalId": "",
+        "productId": "1760433759230",
+        "updatedAt": "2025-12-04T15:09:26.293Z"
+      },
+      {
+        "id": "1760444793082",
+        "createdAt": "2025-10-14T12:26:33.082Z",
+        "stakeholderIds": [
+          "1760438495555",
+          "1760436010260",
+          "1760725120609",
+          "1760773617608"
+        ],
+        "context": "",
+        "objective": "Intégration d'une carte Google Maps pour localiser l'atelier à Lyon et faciliter les visites clients potentielles.",
+        "importance": "low",
+        "storyPoints": 5,
+        "primaryContactId": "1760725120609",
+        "personaIds": [
+          "1760726886157"
+        ],
+        "linkedGoalId": "",
+        "productId": "1760433759230",
+        "updatedAt": "2025-12-04T10:47:23.956Z",
+        "sourceInterviewId": "1760439019602"
+      },
+      {
+        "id": "1760445584111",
+        "createdAt": "2025-10-14T12:39:44.111Z",
+        "stakeholderIds": [
+          "1760438495555",
+          "1760436010260",
+          "1760725120609",
+          "1760773617608"
+        ],
+        "context": "",
+        "objective": "Section processus de production et finitions pour valoriser l'expertise artisanale.",
+        "importance": "medium",
+        "storyPoints": 2,
+        "primaryContactId": "1760725120609",
+        "personaIds": [
+          "1760774221134"
+        ],
+        "linkedGoalId": "",
+        "productId": "1760433759230",
+        "updatedAt": "2025-10-18T08:04:03.743Z"
+      },
+      {
+        "id": "1760445690117",
+        "createdAt": "2025-10-14T12:41:30.117Z",
+        "stakeholderIds": [
+          "1760438495555",
+          "1760436010260",
+          "1760725120609",
+          "1760773617608"
+        ],
+        "context": "",
+        "objective": "Catalogue interactif avec photos détaillées des pièces en mini-séries (1-100 unités, aluminium/bronze).",
+        "importance": "critical",
+        "storyPoints": 2,
+        "primaryContactId": "1760725120609",
+        "personaIds": [
+          "1760726886157"
+        ],
+        "linkedGoalId": "",
+        "productId": "1760433759230",
+        "updatedAt": "2025-12-04T13:48:22.215Z"
+      }
+    ],
+    "sprints": [
+      {
+        "id": "1760448848002",
+        "createdAt": "2025-10-14T13:34:08.002Z",
+        "status": "completed",
+        "storyIds": [
+          "1760446833649",
+          "1760774990868"
+        ],
+        "actionIds": [],
+        "teamCapacity": 0,
+        "technicalBuffer": 20,
+        "technicalTasks": [],
+        "committedPoints": 0,
+        "sprintNumber": "S-03",
+        "name": "Sprint Interaction et Conversion",
+        "goal": "Implémenter le formulaire de devis sécurisé et les fonctionnalités interactives finales, avec tests de sécurité et performance, pour faciliter les conversions rapides des visiteurs en leads qualifiés et respecter les normes RGPD.",
+        "startDate": "2025-10-01",
+        "endDate": "2025-10-06",
+        "productId": "1760433759230",
+        "teamId": "1760725230401",
+        "updatedAt": "2025-10-18T14:12:31.494Z"
+      },
+      {
+        "id": "1760448946609",
+        "createdAt": "2025-10-14T13:35:46.609Z",
+        "status": "active",
+        "storyIds": [
+          "1760447429210",
+          "1760447712380"
+        ],
+        "actionIds": [],
+        "teamCapacity": 0,
+        "technicalBuffer": 20,
+        "technicalTasks": [],
+        "committedPoints": 0,
+        "sprintNumber": "S-03",
+        "name": "Sprint Fondation SEO",
+        "goal": "Mettre en place les bases techniques d'optimisation SEO pour assurer une visibilité naturelle dès le lancement, en intégrant recherche de mots-clés, structure de site et balises, afin d'augmenter le trafic organique et attirer des prospects qualifiés comme défini dans la user story du propriétaire. Durée : 1 semaine.",
+        "startDate": "2025-10-22",
+        "endDate": "2025-10-30",
+        "productId": "1760433759230",
+        "teamId": "1760773988346",
+        "updatedAt": "2025-10-18T14:12:39.494Z"
+      },
+      {
+        "id": "1760449192186",
+        "createdAt": "2025-10-14T13:39:52.186Z",
+        "status": "completed",
+        "storyIds": [
+          "1760774495014",
+          "1760447344268"
+        ],
+        "actionIds": [],
+        "teamCapacity": 0,
+        "technicalBuffer": 20,
+        "technicalTasks": [],
+        "committedPoints": 0,
+        "sprintNumber": "S-02",
+        "name": "Sprint Design et Contenus Valorisation",
+        "goal": "Développer l'interface visuelle épurée et les sections de contenus statiques pour valoriser le savoir-faire de la TPE, en intégrant design, slider et témoignages, afin d'améliorer l'engagement utilisateur et la crédibilité perçue. ",
+        "startDate": "2025-10-07",
+        "endDate": "2025-10-21",
+        "productId": "1760433759230",
+        "teamId": "1760773988346",
+        "updatedAt": "2025-10-18T14:09:45.971Z"
+      }
+    ],
+    "tasks": [
+      {
+        "id": "1760726945713",
+        "createdAt": "2025-10-17T18:49:05.713Z",
+        "status": "done",
+        "estimatedHours": 8,
+        "outcome": "completed",
+        "outcomeReason": "",
+        "outcomeNote": "",
+        "outcomeDate": "2025-10-18T11:02:24.934Z",
+        "history": [
+          {
+            "sprintId": "",
+            "status": "planned",
+            "outcome": "completed",
+            "reason": "",
+            "date": "2025-10-18T11:02:24.934Z"
+          }
+        ],
+        "taskNumber": "1-1",
+        "title": "Développer le frontend du formulaire de devis",
+        "description": "Créer un formulaire HTML/CSS/JS avec champs obligatoires (nom, email, téléphone, description projet) et dropdowns pour matériaux (aluminium, bronze) et quantités (1-100).\nAjouter un champ upload pour fichiers (max 10MB, formats .pdf/.dxf/.step) avec validation côté client (JavaScript).\nAssurer un design responsive avec Bootstrap ou CSS Grid, testable sur mobile/tablet.\nDépendances : Bibliothèque JS (ex. jQuery pour validation), fichier CSS existant à ajuster.",
+        "userStoryId": "1760446833649",
+        "assignedTo": "1760725201511",
+        "sprintId": "",
+        "type": "development",
+        "updatedAt": "2025-10-18T11:02:24.934Z"
+      },
+      {
+        "id": "1760783779737",
+        "createdAt": "2025-10-18T10:36:19.737Z",
+        "status": "inProgress",
+        "estimatedHours": 10,
+        "outcome": null,
+        "outcomeReason": null,
+        "outcomeNote": null,
+        "outcomeDate": null,
+        "history": [],
+        "taskNumber": "T-127",
+        "title": "Implémenter un suivi des conditions du contrat dans le CMS",
+        "description": "Intégrer une section dédiée dans le CMS (ex. WordPress) pour lister les conditions du contrat (budget 5 000 €, délai 2 mois, KPIs 10 devis/mois).\nDévelopper un tableau ou checklist dynamique en HTML/CSS/JS pour suivre l'avancement (statut : en cours, validé, en retard).\nAjouter une alerte email au propriétaire si un KPI ou délai n'est pas respecté (ex. < 10 devis/mois).\nDépendances : Plugin CMS (ex. ACF), serveur email (SendGrid).",
+        "userStoryId": "1760447344268",
+        "assignedTo": "1760725201511",
+        "sprintId": "",
+        "type": "development",
+        "updatedAt": "2025-10-18T12:06:32.410Z"
+      },
+      {
+        "id": "1760783855425",
+        "createdAt": "2025-10-18T10:37:35.425Z",
+        "status": "inProgress",
+        "estimatedHours": 6,
+        "outcome": null,
+        "outcomeReason": null,
+        "outcomeNote": null,
+        "outcomeDate": null,
+        "history": [
+          {
+            "sprintId": "",
+            "status": "planned",
+            "outcome": "completed",
+            "reason": "",
+            "date": "2025-10-18T11:02:30.614Z"
+          }
+        ],
+        "taskNumber": "TASK-053",
+        "title": "Valider le respect des conditions et KPIs",
+        "description": "Tester le suivi des conditions dans le CMS (ajout/modif statut, alertes email) sur desktop/mobile.\nSimuler 2 scénarios (KPI atteint, KPI non atteint) pour vérifier notifications et rapports générés.\nValider avec le propriétaire que les données (budget, délai, 10 devis/mois) sont correctement reflétées et alertes fonctionnent.\nAjuster bugs identifiés dans JS/CSS/backend.\nDépendances : Accès CMS, données test fournies par le client.",
+        "userStoryId": "1760447712380",
+        "assignedTo": "1760725201511",
+        "sprintId": "",
+        "type": "testing",
+        "updatedAt": "2025-10-18T13:29:49.946Z"
+      },
+      {
+        "id": "1760784012877",
+        "createdAt": "2025-10-18T10:40:12.877Z",
+        "status": "done",
+        "estimatedHours": 10,
+        "outcome": "completed",
+        "outcomeReason": "",
+        "outcomeNote": "",
+        "outcomeDate": "2025-10-18T11:02:36.192Z",
+        "history": [
+          {
+            "sprintId": "",
+            "status": "planned",
+            "outcome": "completed",
+            "reason": "",
+            "date": "2025-10-18T11:02:36.192Z"
+          }
+        ],
+        "taskNumber": "1-2",
+        "title": "Implémenter la sécurité et le backend du formulaire",
+        "description": "Intégrer reCAPTCHA v3 pour protection anti-spam et mentions RGPD avec case à cocher.\nDévelopper un backend (PHP/Node.js) pour traitement des données, encryption (HTTPS/TLS), et envoi email crypté au propriétaire via SendGrid.\nConfigurer notification auto au prospect (\"Demande reçue, réponse en 48h\") par email/SMS.\nDépendances : API reCAPTCHA, serveur email, test sécurité avec OWASP ZAP.",
+        "userStoryId": "1760446833649",
+        "assignedTo": "1760725201511",
+        "sprintId": "",
+        "type": "development",
+        "updatedAt": "2025-10-18T11:02:36.192Z"
+      },
+      {
+        "id": "1760784070382",
+        "createdAt": "2025-10-18T10:41:10.382Z",
+        "status": "done",
+        "estimatedHours": 6,
+        "outcome": "completed",
+        "outcomeReason": "",
+        "outcomeNote": "",
+        "outcomeDate": "2025-10-18T11:02:42.956Z",
+        "history": [
+          {
+            "sprintId": "",
+            "status": "planned",
+            "outcome": "completed",
+            "reason": "",
+            "date": "2025-10-18T11:02:42.956Z"
+          }
+        ],
+        "taskNumber": "1-3",
+        "title": "Tester et valider le formulaire de devis",
+        "description": "Tester le formulaire sur desktop/mobile pour validation champs (email format, upload 10MB max) et chargement < 2 secondes (Google PageSpeed).\nVérifier la sécurité (absence XSS/SQL injection) avec OWASP ZAP et RGPD compliance (case cochée obligatoire).\nSimuler 5 soumissions pour tester notifications email/SMS et taux de complétion > 90%.\nAjuster bugs identifiés dans JS/CSS/backend, avec validation finale par le propriétaire.\nDépendances : Outils de test (OWASP ZAP, browser dev tools).",
+        "userStoryId": "1760446833649",
+        "assignedTo": "1760725201511",
+        "sprintId": "",
+        "type": "development",
+        "updatedAt": "2025-10-18T11:02:42.956Z"
+      },
+      {
+        "id": "1760784102955",
+        "createdAt": "2025-10-18T10:41:42.955Z",
+        "status": "inProgress",
+        "estimatedHours": 12,
+        "outcome": null,
+        "outcomeReason": null,
+        "outcomeNote": null,
+        "outcomeDate": null,
+        "history": [
+          {
+            "sprintId": "",
+            "status": "planned",
+            "outcome": "completed",
+            "reason": "",
+            "date": "2025-10-18T11:02:47.800Z"
+          }
+        ],
+        "taskNumber": "2-1",
+        "title": "Créer les sections \"Processus de production\" et \"Expertise artisanale\"",
+        "description": "Développer 2 sections HTML/CSS/JS : \"Processus de production\" (4 étapes, 100-200 mots chacune) et \"Expertise artisanale\" (textes et 2-3 images/schémas fournis).\nIntégrer un CMS léger (ex. WordPress) pour mise à jour facile des contenus par le propriétaire.\nAssurer responsive design avec flexbox/grid, et optimiser chargement (< 3 secondes, Google PageSpeed > 80).\nDépendances : CMS plugin, images à fournir par le client.",
+        "userStoryId": "1760447429210",
+        "assignedTo": "1760725201511",
+        "sprintId": "",
+        "type": "development",
+        "updatedAt": "2025-10-18T13:29:51.031Z"
+      },
+      {
+        "id": "1760784178323",
+        "createdAt": "2025-10-18T10:42:58.324Z",
+        "status": "inProgress",
+        "estimatedHours": 6,
+        "outcome": null,
+        "outcomeReason": null,
+        "outcomeNote": null,
+        "outcomeDate": null,
+        "history": [],
+        "taskNumber": "2-2",
+        "title": "Tester l'accessibilité et la validation des sections",
+        "description": "Tester les sections sur mobile/desktop pour accessibilité WCAG (contraste > 4.5:1, balises ALT).\nVérifier chargement < 3 secondes et intégration CMS (ajout/modif contenu sans bug).\nSimuler 2 mises à jour par le propriétaire et valider via feedback écrit.\nAjuster CSS/JS si nécessaire pour corriger erreurs identifiées.\nDépendances : Outils d’accessibilité (ex. WAVE), CMS testé.",
+        "userStoryId": "1760447344268",
+        "assignedTo": "1760773617608",
+        "sprintId": "",
+        "type": "testing",
+        "updatedAt": "2025-10-18T12:06:33.745Z"
+      },
+      {
+        "id": "1760784221089",
+        "createdAt": "2025-10-18T10:43:41.089Z",
+        "status": "inProgress",
+        "estimatedHours": 10,
+        "outcome": null,
+        "outcomeReason": null,
+        "outcomeNote": null,
+        "outcomeDate": null,
+        "history": [
+          {
+            "sprintId": "",
+            "status": "inProgress",
+            "outcome": "completed",
+            "reason": "",
+            "date": "2025-10-18T11:13:55.118Z"
+          },
+          {
+            "sprintId": "",
+            "status": "inProgress",
+            "outcome": "blocked",
+            "reason": "",
+            "date": "2025-10-18T11:14:03.113Z"
+          }
+        ],
+        "taskNumber": "3-1",
+        "title": "Implémenter le design épuré et le slider homepage",
+        "description": "Créer un design épuré avec palette neutre (gris/bronze, fond blanc) et typographie sans-serif, via CSS/Tailwind.\nDévelopper un slider JS avec 5 slides (images HD fournies, légendes courtes, CTA \"Devis\") auto-rotatif, responsive sur mobile.\nOptimiser chargement < 3 secondes (Google PageSpeed > 85) et ajouter balises ALT.\nDépendances : Images client, bibliothèque JS (ex. Swiper.js).",
+        "userStoryId": "1760774495014",
+        "assignedTo": "1760773496044",
+        "sprintId": "",
+        "type": "development",
+        "updatedAt": "2025-10-18T11:14:13.110Z"
+      },
+      {
+        "id": "1760784264688",
+        "createdAt": "2025-10-18T10:44:24.688Z",
+        "status": "inProgress",
+        "estimatedHours": 8,
+        "outcome": null,
+        "outcomeReason": null,
+        "outcomeNote": null,
+        "outcomeDate": null,
+        "history": [],
+        "taskNumber": "3-2",
+        "title": "Intégrer la section témoignages avec carousel",
+        "description": "Implémenter une section HTML/CSS/JS avec carousel de 3-5 témoignages (citations, noms, étoiles, photos optionnelles via CMS).\nAjouter schema markup (Review schema) pour rich snippets Google et assurer responsive design.\nTester navigation (temps < 2 secondes, heatmap > 80% interactions) et mise à jour via CMS.\nDépendances : CMS plugin, contenu témoignages fourni par le client.",
+        "userStoryId": "1760774495014",
+        "assignedTo": "1760773496044",
+        "sprintId": "",
+        "type": "development",
+        "updatedAt": "2025-10-18T11:03:29.823Z"
+      },
+      {
+        "id": "1760784955000",
+        "createdAt": "2025-10-18T10:55:55.000Z",
+        "status": "inProgress",
+        "estimatedHours": 12,
+        "outcome": "blocked",
+        "outcomeReason": "Raison (optionnel)",
+        "outcomeNote": "Notes additionnelles (optionnel)",
+        "outcomeDate": "2025-10-18T13:36:41.171Z",
+        "history": [
+          {
+            "sprintId": "",
+            "status": "inProgress",
+            "outcome": "blocked",
+            "reason": "",
+            "date": "2025-10-18T12:06:57.632Z"
+          },
+          {
+            "sprintId": "",
+            "status": "inProgress",
+            "outcome": "blocked",
+            "reason": "Raison (optionnel)",
+            "date": "2025-10-18T13:36:41.171Z"
+          }
+        ],
+        "taskNumber": "6-1",
+        "title": "Créer une page \"Offre détaillée\" avec contenu riche",
+        "description": "Développer une page HTML/CSS/JS \"Offre détaillée\" incluant services (coulée, finitions), matériaux (aluminium, bronze), quantités (1-100), et exemples applications (industrie, artisanat).\nIntégrer un CMS pour mise à jour facile des contenus (textes, tableaux, 2-3 images fournies).\nAssurer responsive design et optimisation SEO (mots-clés \"fonderie sur mesure France\").\nDépendances : Contenus fournis par le client, plugin CMS.",
+        "userStoryId": "1760774990868",
+        "assignedTo": "1760725201511",
+        "sprintId": "",
+        "type": "development",
+        "updatedAt": "2025-10-18T13:36:41.171Z"
+      },
+      {
+        "id": "1760784980655",
+        "createdAt": "2025-10-18T10:56:20.655Z",
+        "status": "inProgress",
+        "estimatedHours": 6,
+        "outcome": null,
+        "outcomeReason": null,
+        "outcomeNote": null,
+        "outcomeDate": null,
+        "history": [
+          {
+            "sprintId": "",
+            "status": "inProgress",
+            "outcome": "to_review",
+            "reason": "",
+            "date": "2025-10-18T12:07:02.081Z"
+          }
+        ],
+        "taskNumber": "6-2",
+        "title": "Tester la page \"Offre détaillée\" et son accessibilité",
+        "description": "Tester la page sur mobile/desktop pour chargement < 3 secondes (Google PageSpeed > 80) et navigation intuitive.\nVérifier accessibilité WCAG (contraste > 4.5:1, balises ALT) et SEO (position mots-clés via SEMrush).\nSimuler 3 mises à jour via CMS et valider avec le propriétaire la clarté de l’offre.\nAjuster bugs ou contenus si nécessaire.\nDépendances : Outils d’accessibilité (WAVE), données client.",
+        "userStoryId": "1760774990868",
+        "assignedTo": "1760725201511",
+        "sprintId": "",
+        "type": "development",
+        "updatedAt": "2025-10-18T13:36:24.177Z"
+      },
+      {
+        "id": "1760785123277",
+        "createdAt": "2025-10-18T10:58:43.277Z",
+        "status": "inProgress",
+        "estimatedHours": 12,
+        "outcome": "paused",
+        "outcomeReason": "",
+        "outcomeNote": "",
+        "outcomeDate": "2025-10-18T12:07:07.191Z",
+        "history": [
+          {
+            "sprintId": "",
+            "status": "inProgress",
+            "outcome": "paused",
+            "reason": "",
+            "date": "2025-10-18T12:07:07.191Z"
+          }
+        ],
+        "taskNumber": "6-3",
+        "title": "Réaliser un shooting photo des pièces fondues pour le catalogue et le slider",
+        "description": "Organiser un shooting photo à l'atelier de la TPE à Lyon, capturant au moins 10 pièces en mini-séries (aluminium, bronze) sous différents angles et éclairages.\nFournir images HD (min. 3000x2000px, format .jpg) optimisées pour le web (compression < 500KB chacune) pour le catalogue interactif et le slider homepage.\nAssurer une retouche légère (contraste, netteté) et livraison dans un dossier structuré (ex. \"catalogue_photos\", \"slider_photos\") via Google Drive ou clé USB.\nDépendances : Accès à l'atelier, coordination avec le client (Marie Dupont) pour sélection des pièces, délai de 1 semaine.",
+        "userStoryId": "1760774990868",
+        "assignedTo": "1760773930182",
+        "sprintId": "",
+        "type": "development",
+        "updatedAt": "2025-10-18T12:07:07.191Z"
+      }
+    ],
+    "contacts": [
+      {
+        "id": "1760725120609",
+        "createdAt": "2025-10-17T18:18:40.609Z",
+        "name": "Marie Dupont",
+        "role": "Dirigeante de la TPE FonteMiniSérie SARL",
+        "type": "client",
+        "company": "",
+        "department": "",
+        "email": "marie.dupont@fonteminiserie.fr",
+        "phone": "+33 6 12 34 56 78",
+        "notes": "Représente l'entreprise cible, une TPE française spécialisée en fonderie d'aluminium et bronze en mini-séries (1-100 unités). Basée à Lyon, elle gère les opérations quotidiennes et cherche à booster sa visibilité en ligne pour attirer des clients industriels. Budget alloué pour le projet : environ 5 000 €.",
+        "productIds": [
+          "1760433759230"
+        ],
+        "seniority": "na",
+        "skills": [],
+        "capacity": 0,
+        "availability": 100,
+        "workload": 100,
+        "contractType": "freelance",
+        "dailyRate": "",
+        "currency": "EUR",
+        "location": "",
+        "timezone": "Europe/Paris",
+        "workingHours": "9h-18h",
+        "startDate": "",
+        "endDate": "",
+        "isActive": false,
+        "isAvailable": false,
+        "preferences": "",
+        "updatedAt": "2025-10-18T12:01:03.612Z"
+      },
+      {
+        "id": "1760725201511",
+        "createdAt": "2025-10-17T18:20:01.511Z",
+        "name": "Julien Leclerc",
+        "role": "Développeur full-stack",
+        "type": "internal",
+        "company": "",
+        "department": "IT",
+        "email": "julien.leclerc@poa.com",
+        "phone": "+33 6 45 67 89 01",
+        "notes": "Responsable du codage du site avec HTML/CSS/JS et intégration CMS (WordPress). Il gère aussi l'optimisation SEO technique et la sécurité RGPD. A déjà travaillé sur 5 projets similaires pour des PME françaises. Temps estimé : 4 semaines.",
+        "productIds": [
+          "1760433759230"
+        ],
+        "seniority": "senior",
+        "skills": [
+          "React",
+          "Node.js"
+        ],
+        "capacity": "20",
+        "availability": 100,
+        "workload": 100,
+        "contractType": "full_time",
+        "dailyRate": "50",
+        "currency": "EUR",
+        "location": "Paris",
+        "timezone": "Europe/Paris",
+        "workingHours": "9h-18h",
+        "startDate": "2013-04-01",
+        "endDate": "9999-12-31",
+        "isActive": true,
+        "isAvailable": false,
+        "preferences": "Télétravail le vendredi",
+        "updatedAt": "2025-10-18T07:47:21.875Z"
+      },
+      {
+        "id": "1760773496044",
+        "createdAt": "2025-10-18T07:44:56.044Z",
+        "name": "Alexandre Bertrand",
+        "role": "Designer UI一UX freelance",
+        "type": "external",
+        "company": "AB freelance",
+        "department": "",
+        "email": "alex.bertrand@designweb.fr",
+        "phone": "+33 6 98 76 54 32",
+        "notes": "Spécialiste en design responsive et ergonomie pour sites vitrines. Il interviendra pour la création des maquettes et l'intégration visuelle du catalogue produits. Expérience avec des TPE artisanales, disponible pour 2 semaines de collaboration. Tarif journalier : 400 €.",
+        "productIds": [
+          "1760433759230"
+        ],
+        "seniority": "na",
+        "skills": [
+          "Design responsive",
+          "Ergonomie pour sites vitrines"
+        ],
+        "capacity": "20",
+        "availability": 100,
+        "workload": 100,
+        "contractType": "freelance",
+        "dailyRate": "45",
+        "currency": "EUR",
+        "location": "Lyon",
+        "timezone": "Europe/Paris",
+        "workingHours": "9h-18h",
+        "startDate": "2025-01-01",
+        "endDate": "9999-12-31",
+        "isActive": true,
+        "isAvailable": false,
+        "preferences": "100% distanciel",
+        "updatedAt": "2025-12-01T17:41:16.800Z"
+      },
+      {
+        "id": "1760773617608",
+        "createdAt": "2025-10-18T07:46:57.608Z",
+        "name": "Sophie Martin",
+        "role": "Product Owner",
+        "type": "internal",
+        "company": "",
+        "department": "IT",
+        "email": "sophie.martin@poa.com",
+        "phone": "+33 6 23 45 67 89",
+        "notes": "Supervise le projet global, définit les priorités et valide les itérations avec le client. Elle assure la liaison entre les parties prenantes et suit les objectifs de visibilité et leads. Certifiée Scrum, avec 5 ans d'expérience en produits digitaux pour TPE.",
+        "productIds": [
+          "1760433759230"
+        ],
+        "seniority": "senior",
+        "skills": [
+          "Scrum"
+        ],
+        "capacity": "20",
+        "availability": 100,
+        "workload": 100,
+        "contractType": "full_time",
+        "dailyRate": "50",
+        "currency": "EUR",
+        "location": "Lille",
+        "timezone": "Europe/Paris",
+        "workingHours": "9h-18h",
+        "startDate": "2015-01-01",
+        "endDate": "9999-12-31",
+        "isActive": true,
+        "isAvailable": false,
+        "preferences": "En déplacement client les lundis et mardis",
+        "updatedAt": "2025-10-18T07:47:42.240Z"
+      },
+      {
+        "id": "1760773824422",
+        "createdAt": "2025-10-18T07:50:24.422Z",
+        "name": "Pierre Durand",
+        "role": "Responsable SEO",
+        "type": "internal",
+        "company": "",
+        "department": "IT",
+        "email": "pierre.durand@poa.com",
+        "phone": "+33 6 56 78 90 12",
+        "notes": "Référencement naturel, il optimise les contenus pour les mots-clés ciblés. Intervention post-lancement pour audits mensuels. Basé à Paris, il suit les KPIs SEO et propose des ajustements.",
+        "productIds": [
+          "1760433759230"
+        ],
+        "seniority": "na",
+        "skills": [
+          "SEO",
+          "Référencement naturel",
+          "Audit SEO"
+        ],
+        "capacity": "20",
+        "availability": "50",
+        "workload": 100,
+        "contractType": "part_time",
+        "dailyRate": "38",
+        "currency": "EUR",
+        "location": "Paris",
+        "timezone": "Europe/Paris",
+        "workingHours": "9h-18h",
+        "startDate": "2025-05-01",
+        "endDate": "2026-03-31",
+        "isActive": true,
+        "isAvailable": false,
+        "preferences": "100% présentiel"
+      },
+      {
+        "id": "1760773930182",
+        "createdAt": "2025-10-18T07:52:10.182Z",
+        "name": "Élise Moreau",
+        "role": "Photographe produits",
+        "type": "external",
+        "company": "Photoindus",
+        "department": "",
+        "email": "elise.moreau@photoindus.fr",
+        "phone": "+33 6 34 56 78 90",
+        "notes": "Spécialisée en photographie industrielle, elle fournira les images haute qualité des pièces fondues pour le catalogue et le slider. Basée près de Lyon, elle peut se déplacer à l'atelier de la TPE pour shootings. Délai : 1 semaine, budget photos : 800 €.",
+        "productIds": [
+          "1760433759230"
+        ],
+        "seniority": "na",
+        "skills": [
+          "Photographie industrielle"
+        ],
+        "capacity": "20",
+        "availability": 100,
+        "workload": 100,
+        "contractType": "freelance",
+        "dailyRate": "100",
+        "currency": "EUR",
+        "location": "Lyon",
+        "timezone": "Europe/Paris",
+        "workingHours": "9h-18h",
+        "startDate": "2015-01-01",
+        "endDate": "9999-12-31",
+        "isActive": true,
+        "isAvailable": false,
+        "preferences": ""
+      }
+    ],
+    "interviews": [
+      {
+        "id": "1760439019602",
+        "createdAt": "2025-10-14T10:50:19.602Z",
+        "status": "completed",
+        "sections": [
+          {
+            "title": "Contexte de l'entreprise et besoins généraux",
+            "questions": [
+              {
+                "question": "Pouvez-vous me décrire brièvement l'activité de votre TPE FonteMiniSérie SARL, y compris les types de produits fondus en mini-séries et vos clients cibles principaux ?",
+                "answer": "Notre TPE, basée à Lyon, se spécialise dans la fonderie d'aluminium et de bronze pour des pièces sur mesure en mini-séries de 1 à 100 unités. Nous servons principalement des artisans, des startups en prototypage et des PME industrielles dans l'automobile ou la décoration. Nous employons 5 personnes et réalisons un CA annuel d'environ 200 000 €."
+              },
+              {
+                "question": "Quels sont les principaux défis actuels en termes de visibilité en ligne et de prospection clients pour votre entreprise de fonderie ?",
+                "answer": "Le principal défi est le manque de visibilité : nous dépendons beaucoup du bouche-à-oreille et des salons locaux, mais nous n'avons pas de site web professionnel. Cela nous fait manquer des opportunités en ligne, surtout avec les recherches Google pour \"fonderie sur mesure France\". Nous recevons peu de demandes spontanées."
+              }
+            ]
+          },
+          {
+            "title": "Attentes pour le site vitrine",
+            "questions": [
+              {
+                "question": "Quelles fonctionnalités essentielles attendez-vous d'un site vitrine (par exemple, catalogue produits, formulaire de devis, galerie photos) pour mettre en valeur vos productions en mini-séries ?",
+                "answer": "J'attends un catalogue interactif avec photos détaillées de nos pièces, un formulaire de devis rapide et sécurisé, et une section sur nos processus (coulée, finitions). Aussi, une intégration de témoignages clients et une optimisation mobile, car beaucoup de prospects consultent sur smartphone."
+              },
+              {
+                "question": "Avez-vous des exemples de sites web que vous aimez ou des concurrents en fonderie dont nous pourrions nous inspirer pour le design et les contenus ?",
+                "answer": "J'aime le site de fonderie-artisanale.com pour sa galerie simple et ses fiches produits claires. Pour les concurrents, regardez petitefonderie.fr : leur slider d'images est inspirant, mais évitez leur design trop chargé. Je veux quelque chose d'épuré, artisanal et français."
+              }
+            ]
+          },
+          {
+            "title": "Contraintes et mesures de succès (20 minutes)",
+            "questions": [
+              {
+                "question": "Quel est votre budget approximatif et le délai souhaité pour la conception et le lancement du site ?",
+                "answer": "Budget autour de 5 000 € tout compris (design, dev, photos). Délai idéal : lancement dans 2 mois max, car nous avons un salon en septembre où promouvoir le site. Pas de maintenance annuelle trop coûteuse."
+              },
+              {
+                "question": "Comment mesurez-vous le succès d'un tel site (par exemple, nombre de contacts entrants, trafic) et quels KPIs prioritaires aimeriez-vous suivre post-lancement ?",
+                "answer": "Succès = au moins 10 demandes de devis par mois via le site dans les 6 premiers mois, et un trafic de 300 visiteurs/mois. KPIs : nombre de leads via formulaire, position Google sur \"fonderie mini-série Lyon\", et feedback clients sur la facilité de navigation."
+              }
+            ]
+          }
+        ],
+        "generalNotes": "Na",
+        "insights": [
+          {
+            "id": "1760439271430",
+            "type": "need",
+            "content": "Catalogue interactif avec photos détaillées des pièces en mini-séries (1-100 unités, aluminium/bronze).",
+            "priority": "critical",
+            "createdAt": "2025-10-14T10:54:31.430Z"
+          },
+          {
+            "id": "1760439281294",
+            "type": "need",
+            "content": "Formulaire de devis rapide et sécurisé pour générer des leads spontanés.",
+            "priority": "high",
+            "createdAt": "2025-10-14T10:54:41.294Z"
+          },
+          {
+            "id": "1760439291480",
+            "type": "need",
+            "content": "Optimisation SEO et mobile pour attirer du trafic via mots-clés comme \"fonderie mini-série Lyon\".",
+            "priority": "critical",
+            "createdAt": "2025-10-14T10:54:51.480Z"
+          },
+          {
+            "id": "1760439298307",
+            "type": "need",
+            "content": "Design épuré inspiré de sites comme fonderie-artisanale.com, avec slider et témoignages clients.",
+            "priority": "high",
+            "createdAt": "2025-10-14T10:54:58.307Z"
+          },
+          {
+            "id": "1760439306521",
+            "type": "need",
+            "content": "Section processus de production et finitions pour valoriser l'expertise artisanale.",
+            "priority": "medium",
+            "createdAt": "2025-10-14T10:55:06.521Z"
+          },
+          {
+            "id": "1760439321094",
+            "type": "need",
+            "content": "Respect budget 5 000 € et lancement en 2 mois max, avec KPIs (10 devis/mois, 300 visiteurs).",
+            "priority": "critical",
+            "createdAt": "2025-10-14T10:55:21.094Z"
+          },
+          {
+            "id": "1760439346322",
+            "type": "need",
+            "content": "Intégration d'une carte Google Maps pour localiser l'atelier à Lyon et faciliter les visites clients potentielles.",
+            "priority": "low",
+            "createdAt": "2025-10-14T10:55:46.322Z"
+          }
+        ],
+        "actionItems": [],
+        "linkedNeedIds": [],
+        "interviewedContactIds": [
+          "1760438495555",
+          "1760725120609"
+        ],
+        "title": "Entretien découverte",
+        "type": "discovery",
+        "scheduledDate": "2025-05-15T14:30",
+        "duration": 60,
+        "location": "Paris - 10ième - Bureau du client",
+        "objective": "- Découvrir les besoins précis de la TPE en termes de visibilité en ligne et de génération de leads pour le site vitrine.\n- Recueillir des informations détaillées sur l'activité de fonderie en mini-séries afin d'aligner le produit sur les attentes du client et valider les fonctionnalités prioritaires.\n- Identifier les contraintes budgétaires, techniques et temporelles pour affiner le backlog du projet et assurer une livraison adaptée.",
+        "productId": "1760433759230",
+        "updatedAt": "2025-12-04T09:31:21.292Z",
+        "notes": [],
+        "objectives": "Connaitre les besoins fondamentaux du client"
+      }
+    ],
+    "personas": [
+      {
+        "id": "1760726886157",
+        "createdAt": "2025-10-17T18:48:06.157Z",
+        "isPrimary": true,
+        "linkedContactIds": [
+          "1760725120609"
+        ],
+        "linkedNeedIds": [],
+        "linkedInterviewIds": [],
+        "goals": [
+          "Accélérer le sourcing de fournisseurs pour mini-séries afin de respecter les deadlines de prototypes et scaler les designs innovants vers la production.",
+          "Réduire les risques d'achat en obtenant des infos transparentes (matériaux, coûts, délais) en ligne, pour optimiser le budget R&D et minimiser les erreurs coûteuses.",
+          "Réduire les risques d'achat en obtenant des infos transparentes (matériaux, coûts, délais) en ligne, pour optimiser le budget R&D et minimiser les erreurs coûteuses."
+        ],
+        "frustrations": [
+          "Recherches infructueuses en ligne qui gaspillent du temps précieux en phase R&D, augmentant la pression dans un environnement startup compétitif.",
+          "Réponses lentes ou opaques des fournisseurs, menant à des frustrations et des choix suboptimaux (qualité vs coût), surtout avec des budgets serrés.",
+          "Manque de visibilité sur l'expertise réelle des TPE (sans photos ou cas d'études), générant une hésitation et une préférence pour des acteurs plus \"visibles\" même si moins adaptés."
+        ],
+        "motivations": [
+          "Passion pour l'innovation mécanique et la réussite de sa startup, motivée par l'impact sur des secteurs comme l'électrique, avec un désir de contribuer à des produits durables.",
+          "Efficacité personnelle pour équilibrer travail intense et vie familiale, en cherchant des outils digitaux qui simplifient les processus d'achat.",
+          "Satisfaction de partenariats gagnant-gagnant avec des artisans, renforcée par des retours concrets (devis rapides, qualité livrée), boostant sa confiance en tant qu'acheteur clé."
+        ],
+        "preferredChannels": [
+          "Email",
+          "Face à face",
+          "Téléphone",
+          "Visioconférence",
+          "Messagerie instantanée"
+        ],
+        "devices": [
+          "Ordinateur de bureau",
+          "Smartphone"
+        ],
+        "name": "Antoine Leroy",
+        "avatar": "👨‍🔬",
+        "role": "Ingénieur prototypage et acheteur",
+        "age": "41",
+        "demographic": "",
+        "company": "Startup",
+        "seniority": "12",
+        "teamSize": "20",
+        "techLevel": "expert",
+        "usageFrequency": "daily",
+        "environment": "Bureau",
+        "quote": "Dans le prototypage, chaque jour compte ; j'ai besoin d'un fondeur qui répond vite avec des devis clairs, sans me faire perdre du temps sur des sites mal fichus.",
+        "productId": "1760433759230",
+        "updatedAt": "2025-12-04T15:06:37.950Z"
+      },
+      {
+        "id": "1760774221134",
+        "createdAt": "2025-10-18T07:57:01.134Z",
+        "isPrimary": true,
+        "linkedContactIds": [
+          "1760725120609"
+        ],
+        "linkedNeedIds": [],
+        "linkedInterviewIds": [],
+        "goals": [
+          "Moderniser l'image de sa TPE en passant d'une dépendance au bouche-à-oreille à une présence digitale professionnelle, pour attirer des clients au-delà du réseau local et augmenter le CA de 20% via des leads en ligne.",
+          "Simplifier la prospection en obtenant des demandes de devis spontanées (cible : 10/mois), libérant du temps pour la production et la gestion d'équipe.",
+          "Assurer un retour sur investissement rapide avec un site lancé dans 2 mois, aligné sur des événements comme les salons, tout en respectant un budget serré de 5 000 €."
+        ],
+        "frustrations": [
+          "Manque de visibilité en ligne qui fait rater des opportunités Google, renforçant un sentiment d'isolement dans un marché concurrentiel dominé par des acteurs plus digitalisés.",
+          "Charge de travail excessive (50h/semaine) sans outils digitaux, générant du stress et une peur de l'échec si le site est mal conçu ou non rentable.",
+          "Contraintes financières et techniques d'une TPE : pas de compétences internes en web, crainte des coûts cachés (maintenance) et d'un design inadapté qui ne reflète pas l'artisanat authentique."
+        ],
+        "motivations": [
+          "Croissance durable de l'entreprise familiale, motivée par la transmission d'un savoir-faire en fonderie et la fierté de l'artisanat français, avec un focus sur la durabilité (matériaux recyclés).",
+          "Gain de temps et d'efficacité pour équilibrer vie pro/perso (famille avec deux enfants), en déléguant la prospection à un outil passif comme le site.",
+          "Validation par des résultats concrets (KPIs comme trafic et leads), inspirée par des pairs réussis dans l'industrie, pour renforcer sa confiance en tant que dirigeante et booster l'équipe."
+        ],
+        "preferredChannels": [
+          "Face à face",
+          "Téléphone"
+        ],
+        "devices": [
+          "Smartphone",
+          "Ordinateur portable"
+        ],
+        "name": "Marinette, l'entrepreneuse nouvelle génération",
+        "avatar": "👩‍💼",
+        "role": "Dirigeante et gérante",
+        "age": "33",
+        "demographic": "",
+        "company": "TPE",
+        "seniority": "10",
+        "teamSize": "5",
+        "techLevel": "intermediate",
+        "usageFrequency": "weekly",
+        "environment": "",
+        "quote": "Je n'ai pas de temps pour un site compliqué ; il faut qu'il attire des clients sérieux en fonderie sur mesure sans me coûter une fortune.",
+        "productId": "1760433759230"
+      }
+    ],
+    "teams": [
+      {
+        "id": "1760725230401",
+        "createdAt": "2025-10-17T18:20:30.401Z",
+        "status": "active",
+        "type": "squad",
+        "memberContactIds": [
+          "1760725201511",
+          "1760773824422"
+        ],
+        "productIds": [
+          "1760433759230"
+        ],
+        "name": "Équipe Technique",
+        "description": "Cette équipe est responsable du développement technique et de l'optimisation du site SiteVitrineFonte. Elle gère le codage, l'intégration des fonctionnalités (comme le CMS et la sécurité RGPD), ainsi que l'optimisation SEO technique pour assurer une performance optimale et un bon référencement dès le lancement.",
+        "leadContactId": "1760725201511",
+        "updatedAt": "2025-10-18T07:52:34.001Z"
+      },
+      {
+        "id": "1760773988346",
+        "createdAt": "2025-10-18T07:53:08.346Z",
+        "status": "active",
+        "type": "squad",
+        "memberContactIds": [
+          "1760773496044",
+          "1760773617608",
+          "1760773930182"
+        ],
+        "productIds": [
+          "1760433759230"
+        ],
+        "name": "Équipe Créative et Gestion",
+        "description": "Cette équipe se concentre sur les aspects créatifs, la gestion de projet et la production de contenus visuels pour le site vitrine. Elle assure la cohérence du design, la validation des itérations et la fourniture d'éléments multimédias de qualité (maquettes, photos) pour valoriser les produits de fonderie en mini-séries.",
+        "leadContactId": "1760773617608"
+      }
+    ],
+    "budgetEntries": [
+      {
+        "id": "1760727152601",
+        "createdAt": "2025-10-17T18:52:32.601Z",
+        "status": "planned",
+        "currency": "EUR",
+        "actualAmount": 0,
+        "title": "Charges de personnel Equipe 1",
+        "category": "human_resources",
+        "productId": "1760433759230",
+        "sprintId": "1760448946609",
+        "plannedAmount": 5000,
+        "startDate": "2025-10-22",
+        "endDate": "2025-10-30",
+        "notes": "",
+        "consumedAmount": 3000,
+        "consumedNotes": "",
+        "updatedAt": "2025-10-17T20:03:23.428Z",
+        "manualExpectedAmount": 5500,
+        "expectedNotes": "Mauvaise estimation du cahier des charges"
+      }
+    ],
+    "sprintReviews": [
+      {
+        "id": "1760727010701",
+        "createdAt": "2025-10-17T18:50:10.701Z",
+        "status": "scheduled",
+        "participants": [
+          "1760725120609"
+        ],
+        "completedStoryIds": [
+          "1760446833649"
+        ],
+        "demoNotes": "Démonstration réussie du formulaire de devis sécurisé (US-001) : navigation fluide, soumissions testées avec succès, notifications email/SMS fonctionnelles.\nPrésentation de la page \"Offre détaillée\" (US-XXX) : contenu riche intégré, mais test d’accessibilité (T-128, TASK-055) montre des problèmes (contraste insuffisant, balises ALT manquantes sur 2 images). Réactions : Marie Dupont demande ajustements pour conformité WCAG ; Sophie Martin insiste sur SEO. Questions : Quel délai pour corrections ?",
+        "stakeholderFeedback": [
+          {
+            "contactId": "1760725120609",
+            "feedback": "Satisfaite du formulaire de devis, mais la page \"Offre détaillée\" doit être corrigée pour accessibilité (contraste, ALT) avant validation finale.\nLe devis fonctionne bien, mais je veux que la page offre soit parfaite pour valoriser notre savoir-faire.",
+            "priority": "medium",
+            "category": "feature"
+          }
+        ],
+        "decisions": "Valider la User Story #US-001 (formulaire de devis) comme terminée.\nReporter la validation de la User Story #US-XXX (offre détaillée) à un prochain sprint après correction de la tâche T-128, TASK-055.\nPlanifier une correction de l’accessibilité (contraste, balises ALT) d’ici la fin du prochain sprint (15/10/2025).",
+        "nextStepsProductBacklog": "Ajouter une nouvelle tâche : \"Corriger l’accessibilité de la page 'Offre détaillée'\" (T-128, TASK-057) avec estimation de 4h, assignée à Julien Leclerc.\nPrioriser cette tâche dans le prochain sprint pour respecter les attentes de Marie et Sophie.\nRéévaluer les KPIs SEO post-correction pour confirmer l’impact.",
+        "sprintId": "1760448848002",
+        "reviewDate": "2025-10-17T18:49",
+        "updatedAt": "2025-10-17T19:46:49.318Z"
+      }
+    ],
+    "sprintRetrospectives": [
+      {
+        "id": "1760727042329",
+        "createdAt": "2025-10-17T18:50:42.329Z",
+        "status": "completed",
+        "participants": [
+          "1760725201511"
+        ],
+        "whatWentWell": [
+          {
+            "id": "1760727021179",
+            "description": "Les daily ont permis une bonne coordination entre l'équipe technique et créative, notamment pour avancer sur le formulaire de devis.",
+            "votes": 3
+          }
+        ],
+        "whatNeedsImprovement": [
+          {
+            "id": "1760727030617",
+            "description": "Les tests end-to-end sur la page \"Offre détaillée\" ont révélé des problèmes d’accessibilité (contraste, balises ALT) trop tard, entraînant une tâche \"À revoir\".",
+            "votes": 2
+          },
+          {
+            "id": "1760727027213",
+            "description": "Manque de communication initiale sur les attentes d’accessibilité avec le client (Marie).",
+            "votes": 1
+          }
+        ],
+        "actionItems": [
+          {
+            "id": "1760727038455",
+            "description": "Mettre en place des tests automatisés (ex. Selenium) pour vérifier l’accessibilité (contraste, ALT) avant validation finale.",
+            "priority": "medium",
+            "category": "process",
+            "assignedTo": "",
+            "dueDate": "2025-10-15",
+            "notes": "",
+            "status": "todo"
+          },
+          {
+            "id": "1760730270333",
+            "description": "Réunir l’équipe et le client en début de sprint pour clarifier les critères d’accessibilité WCAG.",
+            "priority": "medium",
+            "category": "process",
+            "assignedTo": "1760725201511",
+            "dueDate": "2025-10-15",
+            "notes": "",
+            "status": "todo"
+          }
+        ],
+        "nextSprintCommitments": "Corriger la tâche \"Tester la page 'Offre détaillée'\" (T-128, TASK-055) avec focus sur accessibilité.\nMettre en œuvre une checklist d’accessibilité avant toute démo client.\nAméliorer la fréquence des revues intermédiaires avec Marie pour valider les livrables.",
+        "sprintId": "1760448848002",
+        "retroDate": "2025-10-08T13:45",
+        "updatedAt": "2025-10-17T19:44:40.805Z"
+      }
+    ],
+    "settings": {
+      "roles": [],
+      "companies": [],
+      "departments": []
+    }
+  }
+}

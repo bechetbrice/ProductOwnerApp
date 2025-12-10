@@ -1,0 +1,32 @@
+// Export centralisé des composants UI réutilisables
+export { default as Badge } from './Badge';
+export { default as BoardCard } from './BoardCard';
+export { default as Button } from './Button';
+export { default as Card } from './Card.jsx';
+export { CardHeader, CardFooter } from './Card/index';
+export { default as ColorPicker } from './ColorPicker';
+export { default as CustomSelect } from './CustomSelect';
+export { default as DetailModal } from './DetailModal';
+export { default as DynamicList } from './DynamicList';
+export { default as EmptyState } from './EmptyState';
+export { default as FormFooter } from './FormFooter';
+export { default as FormGrid } from './FormGrid';
+export { default as FormHeader } from './FormHeader';
+export { default as FormModal } from './FormModal';
+export { default as FormSection } from './FormSection';
+export { default as InfoField } from './InfoField';
+export { default as InfoTooltip } from './InfoTooltip';
+export { default as Input } from './Input';
+export { default as MetricCard } from './MetricCard';
+export { default as Modal } from './Modal';
+export { default as MultiSelector } from './MultiSelector';
+export { default as Pagination } from './Pagination';
+export { default as ProductDropdown } from './ProductDropdown';
+// export { default as ProductSelector } from './ProductSelector'; // DEPRECATED - Remplacé par Common/ProductSelector (style émeraude)
+export { default as ProgressBar } from './ProgressBar';
+export { default as SectionGroup } from './SectionGroup';
+export { default as Select } from './Select';
+export { default as StatusSelector } from './StatusSelector';
+export { Tabs, Tab } from './Tabs';
+export { default as Textarea } from './Textarea';
+export { default as VirtualizedList } from './VirtualizedList';

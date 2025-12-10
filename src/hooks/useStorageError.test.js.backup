@@ -1,0 +1,249 @@
+/**
+ * Tests pour useStorageError hook
+ * 
+ * Tests : 20 tests couvrant toutes les fonctionnalités
+ */
+
+import { renderHook, act } from '@testing-library/react';
+import { useStorageError, useStorageQuota } from './useStorageError';
+import { StorageErrorProvider } from '../contexts/StorageErrorContext';
+
+// Wrapper pour le provider
+const wrapper = ({ children }) => (
+  <StorageErrorProvider>{children}</StorageErrorProvider>
+);
+
+describe('useStorageError', () => {
+  
+  describe('État initial', () => {
+    test('devrait avoir un état initial vide', () => {
+      const { result } = renderHook(() => useStorageError(), { wrapper });
+      
+      expect(result.current.errors).toEqual([]);
+      expect(result.current.hasErrors).toBe(false);
+      expect(result.current.criticalErrors).toEqual([]);
+    });
+
+    test('devrait avoir toutes les fonctions définies', () => {
+      const { result } = renderHook(() => useStorageError(), { wrapper });
+      
+      expect(typeof result.current.addError).toBe('function');
+      expect(typeof result.current.clearError).toBe('function');
+      expect(typeof result.current.clearAllErrors).toBe('function');
+      expect(typeof result.current.getErrorsByType).toBe('function');
+      expect(typeof result.current.hasCriticalErrors).toBe('function');
+    });
+  });
+
+  describe('Ajout d\'erreurs', () => {
+    test('devrait ajouter une erreur', () => {
+      const { result } = renderHook(() => useStorageError(), { wrapper });
+      
+      const error = {
+        type: 'QUOTA_EXCEEDED',
+        message: 'Storage quota exceeded',
+        timestamp: new Date().toISOString(),
+      };
+
+      act(() => {
+        result.current.addError(error);
+      });
+
+      expect(result.current.errors).toHaveLength(1);
+      expect(result.current.errors[0]).toMatchObject(error);
+      expect(result.current.hasErrors).toBe(true);
+    });
+
+    test('devrait ajouter plusieurs erreurs', () => {
+      const { result } = renderHook(() => useStorageError(), { wrapper });
+      
+      act(() => {
+        result.current.addError({ type: 'QUOTA_EXCEEDED', message: 'Error 1' });
+        result.current.addError({ type: 'PARSE_ERROR', message: 'Error 2' });
+        result.current.addError({ type: 'OPERATION_FAILED', message: 'Error 3' });
+      });
+
+      expect(result.current.errors).toHaveLength(3);
+    });
+
+    test('devrait générer un ID unique pour chaque erreur', () => {
+      const { result } = renderHook(() => useStorageError(), { wrapper });
+      
+      act(() => {
+        result.current.addError({ type: 'QUOTA_EXCEEDED', message: 'Error 1' });
+        result.current.addError({ type: 'QUOTA_EXCEEDED', message: 'Error 2' });
+      });
+
+      const ids = result.current.errors.map(e => e.id);
+      expect(new Set(ids).size).toBe(2); // Tous les IDs sont uniques
+    });
+  });
+
+  describe('Erreurs critiques', () => {
+    test('devrait identifier les erreurs critiques', () => {
+      const { result } = renderHook(() => useStorageError(), { wrapper });
+      
+      act(() => {
+        result.current.addError({ 
+          type: 'QUOTA_EXCEEDED', 
+          message: 'Critical error',
+          critical: true 
+        });
+      });
+
+      expect(result.current.criticalErrors).toHaveLength(1);
+      expect(result.current.hasCriticalErrors()).toBe(true);
+    });
+
+    test('devrait séparer erreurs critiques et non-critiques', () => {
+      const { result } = renderHook(() => useStorageError(), { wrapper });
+      
+      act(() => {
+        result.current.addError({ type: 'QUOTA_EXCEEDED', critical: true });
+        result.current.addError({ type: 'PARSE_ERROR', critical: false });
+        result.current.addError({ type: 'OPERATION_FAILED', critical: false });
+      });
+
+      expect(result.current.errors).toHaveLength(3);
+      expect(result.current.criticalErrors).toHaveLength(1);
+    });
+  });
+
+  describe('Filtrage par type', () => {
+    test('devrait filtrer erreurs par type', () => {
+      const { result } = renderHook(() => useStorageError(), { wrapper });
+      
+      act(() => {
+        result.current.addError({ type: 'QUOTA_EXCEEDED' });
+        result.current.addError({ type: 'QUOTA_EXCEEDED' });
+        result.current.addError({ type: 'PARSE_ERROR' });
+      });
+
+      const quotaErrors = result.current.getErrorsByType('QUOTA_EXCEEDED');
+      expect(quotaErrors).toHaveLength(2);
+    });
+
+    test('devrait retourner tableau vide si aucun type ne correspond', () => {
+      const { result } = renderHook(() => useStorageError(), { wrapper });
+      
+      act(() => {
+        result.current.addError({ type: 'QUOTA_EXCEEDED' });
+      });
+
+      const errors = result.current.getErrorsByType('UNKNOWN_TYPE');
+      expect(errors).toEqual([]);
+    });
+  });
+
+  describe('Suppression d\'erreurs', () => {
+    test('devrait supprimer une erreur par ID', () => {
+      const { result } = renderHook(() => useStorageError(), { wrapper });
+      
+      let errorId;
+      act(() => {
+        result.current.addError({ type: 'QUOTA_EXCEEDED' });
+        errorId = result.current.errors[0].id;
+      });
+
+      act(() => {
+        result.current.clearError(errorId);
+      });
+
+      expect(result.current.errors).toHaveLength(0);
+      expect(result.current.hasErrors).toBe(false);
+    });
+
+    test('devrait supprimer toutes les erreurs', () => {
+      const { result } = renderHook(() => useStorageError(), { wrapper });
+      
+      act(() => {
+        result.current.addError({ type: 'QUOTA_EXCEEDED' });
+        result.current.addError({ type: 'PARSE_ERROR' });
+        result.current.addError({ type: 'OPERATION_FAILED' });
+      });
+
+      act(() => {
+        result.current.clearAllErrors();
+      });
+
+      expect(result.current.errors).toEqual([]);
+      expect(result.current.hasErrors).toBe(false);
+      expect(result.current.criticalErrors).toEqual([]);
+    });
+
+    test('ne devrait rien faire si ID inexistant', () => {
+      const { result } = renderHook(() => useStorageError(), { wrapper });
+      
+      act(() => {
+        result.current.addError({ type: 'QUOTA_EXCEEDED' });
+      });
+
+      const initialLength = result.current.errors.length;
+
+      act(() => {
+        result.current.clearError('inexistant-id');
+      });
+
+      expect(result.current.errors).toHaveLength(initialLength);
+    });
+  });
+
+  describe('Gestion du contexte', () => {
+    test('devrait lancer une erreur si utilisé hors Provider', () => {
+      // Supprimer les logs d'erreur pour ce test
+      const spy = jest.spyOn(console, 'error').mockImplementation(() => {});
+      
+      expect(() => {
+        renderHook(() => useStorageError());
+      }).toThrow();
+
+      spy.mockRestore();
+    });
+  });
+
+  describe('Timestamps', () => {
+    test('devrait ajouter un timestamp si non fourni', () => {
+      const { result } = renderHook(() => useStorageError(), { wrapper });
+      
+      act(() => {
+        result.current.addError({ type: 'QUOTA_EXCEEDED' });
+      });
+
+      expect(result.current.errors[0].timestamp).toBeDefined();
+      expect(typeof result.current.errors[0].timestamp).toBe('string');
+    });
+
+    test('devrait conserver le timestamp fourni', () => {
+      const { result } = renderHook(() => useStorageError(), { wrapper });
+      const customTimestamp = '2025-01-01T00:00:00.000Z';
+      
+      act(() => {
+        result.current.addError({ 
+          type: 'QUOTA_EXCEEDED',
+          timestamp: customTimestamp 
+        });
+      });
+
+      expect(result.current.errors[0].timestamp).toBe(customTimestamp);
+    });
+  });
+
+  describe('Types d\'erreurs', () => {
+    const errorTypes = [
+      'QUOTA_EXCEEDED',
+      'PARSE_ERROR',
+      'STORAGE_DISABLED',
+      'OPERATION_FAILED'
+    ];
+
+    test.each(errorTypes)('devrait gérer le type %s', (type) => {
+      const { result } = renderHook(() => useStorageError(), { wrapper });
+      
+      act(() => {
+        result.current.addError({ type });
+      });
+
+      expect(result.current.errors[0].type).toBe(type);
+    });
+  });
+});

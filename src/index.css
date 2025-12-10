@@ -1,0 +1,814 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================
+   Animations pour composants UI
+   ======================================== */
+
+/* Animation fade-in pour overlay modal */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Animation slide-up pour contenu modal */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Classes d'animation */
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.3s ease-out;
+}
+
+/* Variables CSS pour le thème */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --bg-hover: #f9fafb;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+  --border-color: #e5e7eb;
+  --border-hover: #d1d5db;
+  --spacing-unit: 0.5rem;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Mode compact */
+.compact-mode {
+  --spacing-unit: 0.25rem;
+}
+
+/* ===========================================
+   STYLES GLOBAUX
+   =========================================== */
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ===========================================
+   MODE COMPACT - ESPACEMENT
+   =========================================== */
+
+.compact-mode .p-1 {
+  padding: calc(var(--spacing-unit) * 0.5) !important;
+}
+
+.compact-mode .p-2 {
+  padding: var(--spacing-unit) !important;
+}
+
+.compact-mode .p-3 {
+  padding: calc(var(--spacing-unit) * 1.5) !important;
+}
+
+.compact-mode .p-4 {
+  padding: calc(var(--spacing-unit) * 2) !important;
+}
+
+.compact-mode .p-6 {
+  padding: calc(var(--spacing-unit) * 3) !important;
+}
+
+.compact-mode .p-8 {
+  padding: calc(var(--spacing-unit) * 4) !important;
+}
+
+.compact-mode .px-2 {
+  padding-left: var(--spacing-unit) !important;
+  padding-right: var(--spacing-unit) !important;
+}
+
+.compact-mode .px-3 {
+  padding-left: calc(var(--spacing-unit) * 1.5) !important;
+  padding-right: calc(var(--spacing-unit) * 1.5) !important;
+}
+
+.compact-mode .px-4 {
+  padding-left: calc(var(--spacing-unit) * 2) !important;
+  padding-right: calc(var(--spacing-unit) * 2) !important;
+}
+
+.compact-mode .px-6 {
+  padding-left: calc(var(--spacing-unit) * 3) !important;
+  padding-right: calc(var(--spacing-unit) * 3) !important;
+}
+
+.compact-mode .py-2 {
+  padding-top: var(--spacing-unit) !important;
+  padding-bottom: var(--spacing-unit) !important;
+}
+
+.compact-mode .py-3 {
+  padding-top: calc(var(--spacing-unit) * 1.5) !important;
+  padding-bottom: calc(var(--spacing-unit) * 1.5) !important;
+}
+
+.compact-mode .py-4 {
+  padding-top: calc(var(--spacing-unit) * 2) !important;
+  padding-bottom: calc(var(--spacing-unit) * 2) !important;
+}
+
+.compact-mode .py-6 {
+  padding-top: calc(var(--spacing-unit) * 3) !important;
+  padding-bottom: calc(var(--spacing-unit) * 3) !important;
+}
+
+/* Marges en mode compact */
+.compact-mode .m-2 {
+  margin: var(--spacing-unit) !important;
+}
+
+.compact-mode .m-4 {
+  margin: calc(var(--spacing-unit) * 2) !important;
+}
+
+.compact-mode .m-6 {
+  margin: calc(var(--spacing-unit) * 3) !important;
+}
+
+.compact-mode .mb-2 {
+  margin-bottom: var(--spacing-unit) !important;
+}
+
+.compact-mode .mb-3 {
+  margin-bottom: calc(var(--spacing-unit) * 1.5) !important;
+}
+
+.compact-mode .mb-4 {
+  margin-bottom: calc(var(--spacing-unit) * 2) !important;
+}
+
+.compact-mode .mb-6 {
+  margin-bottom: calc(var(--spacing-unit) * 3) !important;
+}
+
+.compact-mode .mb-8 {
+  margin-bottom: calc(var(--spacing-unit) * 4) !important;
+}
+
+.compact-mode .mt-2 {
+  margin-top: var(--spacing-unit) !important;
+}
+
+.compact-mode .mt-4 {
+  margin-top: calc(var(--spacing-unit) * 2) !important;
+}
+
+.compact-mode .mt-6 {
+  margin-top: calc(var(--spacing-unit) * 3) !important;
+}
+
+/* Gaps en mode compact */
+.compact-mode .gap-2 {
+  gap: var(--spacing-unit) !important;
+}
+
+.compact-mode .gap-3 {
+  gap: calc(var(--spacing-unit) * 1.5) !important;
+}
+
+.compact-mode .gap-4 {
+  gap: calc(var(--spacing-unit) * 2) !important;
+}
+
+.compact-mode .gap-6 {
+  gap: calc(var(--spacing-unit) * 3) !important;
+}
+
+.compact-mode .space-y-2 > * + * {
+  margin-top: var(--spacing-unit) !important;
+}
+
+.compact-mode .space-y-3 > * + * {
+  margin-top: calc(var(--spacing-unit) * 1.5) !important;
+}
+
+.compact-mode .space-y-4 > * + * {
+  margin-top: calc(var(--spacing-unit) * 2) !important;
+}
+
+.compact-mode .space-y-6 > * + * {
+  margin-top: calc(var(--spacing-unit) * 3) !important;
+}
+
+.compact-mode .space-x-2 > * + * {
+  margin-left: var(--spacing-unit) !important;
+}
+
+.compact-mode .space-x-3 > * + * {
+  margin-left: calc(var(--spacing-unit) * 1.5) !important;
+}
+
+.compact-mode .space-x-4 > * + * {
+  margin-left: calc(var(--spacing-unit) * 2) !important;
+}
+
+/* ===========================================
+   MODE COMPACT - TYPOGRAPHIE
+   =========================================== */
+
+.compact-mode .text-xs {
+  font-size: 0.625rem !important;
+  line-height: 0.875rem !important;
+}
+
+.compact-mode .text-sm {
+  font-size: 0.75rem !important;
+  line-height: 1rem !important;
+}
+
+.compact-mode .text-base {
+  font-size: 0.875rem !important;
+  line-height: 1.25rem !important;
+}
+
+.compact-mode .text-lg {
+  font-size: 1rem !important;
+  line-height: 1.5rem !important;
+}
+
+.compact-mode .text-xl {
+  font-size: 1.125rem !important;
+  line-height: 1.75rem !important;
+}
+
+.compact-mode .text-2xl {
+  font-size: 1.25rem !important;
+  line-height: 1.75rem !important;
+}
+
+.compact-mode .text-3xl {
+  font-size: 1.5rem !important;
+  line-height: 2rem !important;
+}
+
+.compact-mode h1 {
+  font-size: 1.5rem !important;
+  line-height: 2rem !important;
+}
+
+.compact-mode h2 {
+  font-size: 1.25rem !important;
+  line-height: 1.75rem !important;
+}
+
+.compact-mode h3 {
+  font-size: 1.125rem !important;
+  line-height: 1.75rem !important;
+}
+
+/* ===========================================
+   MODE COMPACT - COMPOSANTS
+   =========================================== */
+
+.compact-mode .rounded-lg {
+  border-radius: 0.375rem !important;
+}
+
+.compact-mode .rounded-xl {
+  border-radius: 0.5rem !important;
+}
+
+.compact-mode button {
+  padding-top: calc(var(--spacing-unit) * 1.5) !important;
+  padding-bottom: calc(var(--spacing-unit) * 1.5) !important;
+  padding-left: calc(var(--spacing-unit) * 2) !important;
+  padding-right: calc(var(--spacing-unit) * 2) !important;
+}
+
+.compact-mode input,
+.compact-mode select,
+.compact-mode textarea {
+  padding: calc(var(--spacing-unit) * 1.5) !important;
+}
+
+/* Cartes en mode compact */
+.compact-mode .card,
+.compact-mode [class*="bg-white"] {
+  padding: calc(var(--spacing-unit) * 2) !important;
+}
+
+/* Sidebar en mode compact */
+.compact-mode .sidebar {
+  width: 12rem !important;
+}
+
+.compact-mode .sidebar .nav-item {
+  padding: calc(var(--spacing-unit) * 1.5) !important;
+}
+
+/* ===========================================
+   SCROLLBAR PERSONNALISÉE
+   =========================================== */
+
+/* Scrollbar pour tous les navigateurs */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db transparent;
+}
+
+/* Scrollbar pour Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #d1d5db;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #9ca3af;
+}
+
+/* Scrollbar fine pour les zones de contenu */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* Scrollbar cachée mais scrollable */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Scrollbar invisible pour la sidebar - Firefox */
+.scrollbar-invisible {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+/* Scrollbar invisible pour la sidebar - Webkit */
+.scrollbar-invisible::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-invisible::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-invisible::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  transition: background 0.3s ease;
+}
+
+.scrollbar-invisible::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ===========================================
+   ANIMATIONS
+   =========================================== */
+
+/* Animation pour le shake (erreur PIN) */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shake {
+  animation: shake 0.5s;
+}
+
+/* Animations pour les notifications */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.animate-slide-out-right {
+  animation: slideOutRight 0.3s ease-in;
+}
+
+.notification-enter {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.notification-exit {
+  animation: slideOutRight 0.3s ease-in;
+}
+
+/* Transition pour le changement de thème */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Animations désactivées */
+body:not(.animations-enabled) * {
+  animation-duration: 0s !important;
+  transition-duration: 0s !important;
+}
+
+/* Animations activées */
+body.animations-enabled * {
+  transition-property: background-color, border-color, color, fill, stroke, transform, opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* ===========================================
+   DRAG & DROP
+   =========================================== */
+
+.dragging {
+  opacity: 0.5;
+  transform: scale(0.95);
+}
+
+.drag-over {
+  background-color: var(--bg-hover) !important;
+  border: 2px dashed #10b981 !important;
+}
+
+/* ===========================================
+   UTILITIES & COMPOSANTS
+   =========================================== */
+
+/* Utility pour limiter le nombre de lignes affichées */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Focus visible pour l'accessibilité */
+*:focus-visible {
+  outline: 2px solid #10b981;
+  outline-offset: 2px;
+}
+
+/* ===========================================
+   SELECT OPTIONS - MIGRATION EMERAUDE
+   =========================================== */
+
+/* Style global des selects */
+select {
+  accent-color: #10b981; /* emerald-500 - pour les checkboxes et radios natifs */
+}
+
+/* Style des options sélectionnées dans un select (remplace le bleu par défaut) */
+select option:checked {
+  background-color: #10b981 !important; /* emerald-500 */
+  background: #10b981 !important;
+  color: white !important;
+  font-weight: 600;
+}
+
+/* Style au survol des options - Approche multi-navigateur */
+select option:hover,
+select option:focus,
+select option:active {
+  background-color: #10b981 !important; /* emerald-500 */
+  background: #10b981 !important;
+  color: white !important;
+}
+
+/* Pour Firefox - Highlight color des options */
+select option {
+  background-color: white;
+  color: #111827;
+}
+
+select option:checked {
+  background: linear-gradient(#10b981, #10b981) !important;
+  background-color: #10b981 !important;
+  color: white !important;
+}
+
+/* Pour WebKit (Chrome, Safari, Edge) */
+select:focus option:checked {
+  background: #10b981 linear-gradient(0deg, #10b981 0%, #10b981 100%) !important;
+  color: white !important;
+}
+
+/* Supprime le highlight bleu par défaut et le remplace par emerald */
+select option::selection,
+select option::-moz-selection {
+  background-color: #10b981 !important;
+  color: white !important;
+}
+
+/* Force le style sur tous les états possibles */
+select option:checked:hover,
+select option:checked:focus,
+select option:checked:active {
+  background-color: #059669 !important; /* emerald-600 - plus foncé au hover */
+  background: #059669 !important;
+  color: white !important;
+}
+
+/* Pour les options non sélectionnées au hover */
+select option:not(:checked):hover,
+select option:not(:checked):focus {
+  background-color: #d1fae5 !important; /* emerald-50 */
+  background: #d1fae5 !important;
+  color: #064e3b !important; /* emerald-900 */
+}
+
+/* Tooltips */
+.tooltip {
+  position: relative;
+}
+
+.tooltip::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1f2937;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  margin-bottom: 0.25rem;
+  z-index: 9999;
+}
+
+.tooltip:hover::before {
+  opacity: 1;
+}
+
+body:not(.show-tooltips) .tooltip::before {
+  display: none;
+}
+
+/* Mode compact - tooltips plus petits */
+.compact-mode .tooltip::before {
+  font-size: 0.75rem;
+  padding: 0.125rem 0.375rem;
+}
+
+/* ===========================================
+   RESPONSIVE
+   =========================================== */
+
+/* Responsive sidebar */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* Mode compact sur mobile */
+  .compact-mode .sidebar {
+    width: 10rem !important;
+  }
+}
+
+/* Mobile - espacement réduit automatiquement */
+@media (max-width: 640px) {
+  .p-8 {
+    padding: 1rem !important;
+  }
+  
+  .p-6 {
+    padding: 0.75rem !important;
+  }
+  
+  .compact-mode .p-8 {
+    padding: 0.5rem !important;
+  }
+  
+  .compact-mode .p-6 {
+    padding: 0.375rem !important;
+  }
+}
+
+/* ===========================================
+   IMPRESSION
+   =========================================== */
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .sidebar {
+    display: none;
+  }
+  
+  .compact-mode {
+    --spacing-unit: 0.125rem;
+  }
+}
+
+/* ===========================================
+   HIGH CONTRAST (ACCESSIBILITÉ)
+   =========================================== */
+
+@media (prefers-contrast: high) {
+  :root {
+    --border-color: #000000;
+    --text-secondary: #000000;
+  }
+  
+  button {
+    border: 2px solid currentColor !important;
+  }
+  
+  input, select, textarea {
+    border: 2px solid currentColor !important;
+  }
+}
+
+/* ===========================================
+   REDUCED MOTION (ACCESSIBILITÉ)
+   =========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .notification-enter,
+  .notification-exit {
+    animation: none !important;
+  }
+}
+
+/* ===========================================
+   ÉTATS SPÉCIAUX
+   =========================================== */
+
+/* État de chargement */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #10b981;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* État désactivé amélioré */
+.disabled,
+[disabled] {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
+/* Mode maintenance */
+.maintenance-mode {
+  filter: grayscale(1);
+  opacity: 0.7;
+}
+
+.maintenance-mode::before {
+  content: '🔧 Mode maintenance';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #f59e0b;
+  color: white;
+  text-align: center;
+  padding: 0.5rem;
+  z-index: 9999;
+  font-weight: bold;
+}
+
+/* Animations pour PWA Install Modal */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.3s ease-out;
+}

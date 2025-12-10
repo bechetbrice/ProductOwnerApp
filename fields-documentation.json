@@ -1,0 +1,1365 @@
+{
+  "metadata": {
+    "generatedDate": "2025-01-21",
+    "version": "1.1.0",
+    "description": "Documentation complète de tous les champs de ProductOwnerApp",
+    "totalModules": 14,
+    "automaticFields": {
+      "description": "Champs ajoutés automatiquement par le système de storage (Factory Pattern)",
+      "fields": {
+        "id": {
+          "type": "string",
+          "auto": true,
+          "format": "timestamp_random",
+          "example": "1732022400000_k2j5h8p3q",
+          "description": "Identifiant unique généré automatiquement à la création",
+          "addedBy": "storageFactory.add()"
+        },
+        "createdAt": {
+          "type": "datetime",
+          "auto": true,
+          "format": "ISO 8601",
+          "example": "2025-01-21T10:30:45.123Z",
+          "description": "Date et heure de création (UTC)",
+          "addedBy": "storageFactory.add()"
+        },
+        "updatedAt": {
+          "type": "datetime",
+          "auto": true,
+          "format": "ISO 8601",
+          "example": "2025-01-21T14:22:10.456Z",
+          "description": "Date et heure de dernière modification (UTC)",
+          "addedBy": "storageFactory.add() + storageFactory.update()",
+          "note": "Mis à jour automatiquement à chaque modification"
+        }
+      },
+      "applicableTo": "ALL_MODULES",
+      "note": "Ces 3 champs sont présents sur TOUTES les entités de l'application, ajoutés automatiquement par le Factory Pattern du système de storage"
+    }
+  },
+  "modules": {
+    "teams": {
+      "displayName": "Équipes",
+      "description": "Gestion des équipes Scrum",
+      "fields": {
+        "name": {
+          "type": "string",
+          "required": true,
+          "label": "Nom de l'équipe",
+          "placeholder": "Ex: Squad Frontend, Team Backend, Chapter DevOps...",
+          "description": "Identifiant clair de l'équipe"
+        },
+        "description": {
+          "type": "textarea",
+          "required": false,
+          "label": "Description",
+          "placeholder": "Objectif, périmètre, technologies utilisées...",
+          "description": "Objectif, périmètre et technologies de l'équipe"
+        },
+        "status": {
+          "type": "select",
+          "required": true,
+          "label": "Statut",
+          "default": "active",
+          "options": ["active", "inactive"],
+          "description": "Active : Équipe en activité, Inactive : Équipe archivée"
+        },
+        "productIds": {
+          "type": "multiselect",
+          "required": false,
+          "label": "Produits associés",
+          "relation": "products",
+          "description": "Produits sur lesquels l'équipe travaille"
+        },
+        "memberContactIds": {
+          "type": "multiselect",
+          "required": true,
+          "label": "Membres de l'équipe",
+          "relation": "contacts",
+          "filter": "isActive === true",
+          "description": "Contacts avec le champ 'Membre actif' coché"
+        },
+        "leadContactId": {
+          "type": "select",
+          "required": false,
+          "label": "Team Lead (optionnel)",
+          "relation": "contacts",
+          "constraint": "Doit être membre de l'équipe",
+          "description": "Référent de l'équipe"
+        }
+      },
+      "computed": {
+        "teamCapacity": {
+          "type": "number",
+          "label": "Capacité totale de l'équipe",
+          "formula": "Somme des capacités ajustées de tous les membres",
+          "unit": "pts/sprint"
+        }
+      }
+    },
+    "products": {
+      "displayName": "Produits",
+      "description": "Catalogue des produits gérés",
+      "fields": {
+        "name": {
+          "type": "string",
+          "required": true,
+          "label": "Nom du produit",
+          "placeholder": "Ex: Application Mobile Client",
+          "description": "Nom complet du produit"
+        },
+        "code": {
+          "type": "string",
+          "required": true,
+          "label": "Code court",
+          "placeholder": "Ex: AMC",
+          "maxLength": 6,
+          "pattern": "^[A-Z0-9]+$",
+          "description": "2-6 caractères majuscules, auto-généré depuis le nom"
+        },
+        "color": {
+          "type": "color",
+          "required": true,
+          "label": "Couleur",
+          "default": "#6366f1",
+          "description": "Identifiant visuel du produit dans toute l'application"
+        },
+        "description": {
+          "type": "textarea",
+          "required": false,
+          "label": "Informations complémentaires sur le produit",
+          "placeholder": "Décrivez le produit, son objectif, son public cible...",
+          "description": "Contexte, objectif, public cible"
+        },
+        "status": {
+          "type": "select",
+          "required": true,
+          "label": "Statut",
+          "default": "active",
+          "options": ["draft", "active", "archived"],
+          "description": "Brouillon : En préparation, Actif : En production (défaut), Archivé : Arrêté mais conservé"
+        },
+        "clientIds": {
+          "type": "multiselect",
+          "required": false,
+          "label": "Client(s)",
+          "relation": "contacts",
+          "description": "Sélection multiple de contacts clients"
+        },
+        "ownerId": {
+          "type": "select",
+          "required": false,
+          "label": "Product Owner",
+          "relation": "contacts",
+          "description": "Responsable principal du produit (optionnel)"
+        },
+        "startDate": {
+          "type": "date",
+          "required": false,
+          "label": "Date de début",
+          "default": "now",
+          "description": "Date de lancement"
+        },
+        "plannedEndDate": {
+          "type": "date",
+          "required": false,
+          "label": "Date de fin prévue",
+          "description": "Planning initial"
+        },
+        "expectedEndDate": {
+          "type": "date",
+          "required": false,
+          "label": "Date de fin attendue",
+          "description": "Estimation actuelle"
+        },
+        "actualEndDate": {
+          "type": "date",
+          "required": false,
+          "label": "Date de fin réelle",
+          "description": "Date effective de livraison"
+        }
+      }
+    },
+    "contacts": {
+      "displayName": "Contacts",
+      "description": "Gestion des contacts (internes, externes, clients)",
+      "fields": {
+        "name": {
+          "type": "string",
+          "required": true,
+          "label": "Nom complet",
+          "placeholder": "Ex: Jean Dupont",
+          "description": "Prénom et nom"
+        },
+        "role": {
+          "type": "string",
+          "required": true,
+          "label": "Rôle / Poste",
+          "configurable": true,
+          "source": "settings.roles",
+          "description": "Fonction exercée"
+        },
+        "type": {
+          "type": "select",
+          "required": true,
+          "label": "Type de contact",
+          "default": "internal",
+          "options": ["internal", "external", "client"],
+          "description": "Interne : Membre équipe, Externe : Partenaire/fournisseur, Client : Utilisateur final"
+        },
+        "company": {
+          "type": "string",
+          "required": false,
+          "label": "Entreprise",
+          "configurable": true,
+          "source": "settings.companies",
+          "condition": "type === 'external' || type === 'client'",
+          "description": "Nom de l'entreprise (pour contacts externes/clients)"
+        },
+        "department": {
+          "type": "string",
+          "required": false,
+          "label": "Département",
+          "configurable": true,
+          "source": "settings.departments",
+          "condition": "type === 'internal'",
+          "description": "Département (pour contacts internes)"
+        },
+        "email": {
+          "type": "email",
+          "required": false,
+          "label": "Email",
+          "placeholder": "Ex: contact@exemple.com",
+          "validation": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$",
+          "description": "Email avec validation automatique"
+        },
+        "phone": {
+          "type": "tel",
+          "required": false,
+          "label": "Téléphone",
+          "placeholder": "Ex: +33 6 12 34 56 78",
+          "description": "Téléphone avec indicatif international"
+        },
+        "notes": {
+          "type": "textarea",
+          "required": false,
+          "label": "Notes",
+          "placeholder": "Contexte, préférences de communication...",
+          "description": "Informations complémentaires"
+        },
+        "productIds": {
+          "type": "multiselect",
+          "required": false,
+          "label": "Produits associés",
+          "relation": "products",
+          "filter": "status === 'active'",
+          "description": "Produits sur lesquels ce contact intervient"
+        }
+      },
+      "optionalSections": {
+        "teamFields": {
+          "displayName": "Informations Équipe",
+          "condition": "showTeamFields === true",
+          "fields": {
+            "seniority": {
+              "type": "select",
+              "required": false,
+              "label": "Niveau d'expérience",
+              "default": "na",
+              "options": ["na", "junior", "intermediate", "senior", "expert"],
+              "description": "Niveau d'expérience"
+            },
+            "skills": {
+              "type": "array",
+              "required": false,
+              "label": "Compétences techniques",
+              "placeholder": "Ex: React, Node.js, Python...",
+              "description": "Liste de compétences"
+            },
+            "capacity": {
+              "type": "number",
+              "required": false,
+              "label": "Capacité (pts/sprint)",
+              "default": 0,
+              "min": 0,
+              "description": "Story points par sprint"
+            },
+            "availability": {
+              "type": "number",
+              "required": false,
+              "label": "Disponibilité (%)",
+              "default": 100,
+              "min": 0,
+              "max": 100,
+              "description": "% temps sur projet"
+            },
+            "workload": {
+              "type": "number",
+              "required": false,
+              "label": "% Temps produit",
+              "default": 100,
+              "min": 0,
+              "max": 100,
+              "description": "Part allouée au produit"
+            },
+            "contractType": {
+              "type": "select",
+              "required": false,
+              "label": "Type de contrat",
+              "options": {
+                "internal": ["full_time", "part_time", "intern", "apprentice"],
+                "external": ["freelance", "contractor", "agency", "consultant"]
+              },
+              "description": "Type de contrat selon le type de contact"
+            },
+            "dailyRate": {
+              "type": "number",
+              "required": false,
+              "label": "Taux horaire brut chargé",
+              "min": 0,
+              "description": "Taux horaire"
+            },
+            "currency": {
+              "type": "select",
+              "required": false,
+              "label": "Devise",
+              "default": "EUR",
+              "options": ["EUR", "USD", "GBP"],
+              "description": "Devise du taux"
+            },
+            "location": {
+              "type": "string",
+              "required": false,
+              "label": "Localisation",
+              "placeholder": "Paris, Remote...",
+              "description": "Lieu de travail"
+            },
+            "timezone": {
+              "type": "string",
+              "required": false,
+              "label": "Fuseau horaire",
+              "default": "Europe/Paris",
+              "placeholder": "Europe/Paris",
+              "description": "Fuseau horaire"
+            },
+            "workingHours": {
+              "type": "string",
+              "required": false,
+              "label": "Horaires",
+              "default": "9h-18h",
+              "placeholder": "9h-18h",
+              "description": "Plage horaire"
+            },
+            "startDate": {
+              "type": "date",
+              "required": false,
+              "label": "Date d'arrivée",
+              "description": "Date d'entrée"
+            },
+            "endDate": {
+              "type": "date",
+              "required": false,
+              "label": "Date de départ",
+              "description": "Date de sortie"
+            },
+            "isActive": {
+              "type": "boolean",
+              "required": false,
+              "label": "Membre actif dans l'équipe",
+              "default": false,
+              "description": "Statut actif"
+            },
+            "isAvailable": {
+              "type": "boolean",
+              "required": false,
+              "label": "Disponible pour nouvelles assignations",
+              "default": false,
+              "description": "Disponibilité"
+            },
+            "preferences": {
+              "type": "textarea",
+              "required": false,
+              "label": "Préférences de travail",
+              "placeholder": "Ex: Préfère le backend, meilleur le matin...",
+              "description": "Préférences"
+            }
+          },
+          "computed": {
+            "adjustedCapacity": {
+              "type": "number",
+              "label": "Capacité ajustée",
+              "formula": "(capacity * availability * workload) / 10000",
+              "unit": "pts/sprint"
+            }
+          }
+        }
+      }
+    },
+    "objectives": {
+      "displayName": "Objectifs Produit",
+      "description": "Objectifs stratégiques par produit",
+      "fields": {
+        "productId": {
+          "type": "select",
+          "required": true,
+          "label": "Produit associé",
+          "relation": "products",
+          "filter": "status === 'active'",
+          "description": "Produit concerné par cet objectif"
+        },
+        "title": {
+          "type": "string",
+          "required": true,
+          "label": "Titre de l'objectif",
+          "placeholder": "Ex: Améliorer l'expérience utilisateur mobile",
+          "description": "Objectif clair et concis"
+        },
+        "description": {
+          "type": "textarea",
+          "required": true,
+          "label": "Description",
+          "placeholder": "Décrivez l'objectif, son contexte et sa raison d'être...",
+          "description": "Contexte, enjeux et raison d'être"
+        },
+        "priority": {
+          "type": "select",
+          "required": true,
+          "label": "Priorité",
+          "default": "medium",
+          "options": ["critical", "high", "medium", "low"],
+          "description": "Critique : Impact majeur, Haute : Très important, Moyenne : Important, Basse : Impact limité"
+        },
+        "status": {
+          "type": "select",
+          "required": true,
+          "label": "Statut",
+          "default": "planned",
+          "options": ["planned", "active", "completed", "cancelled"],
+          "description": "Planifié : Défini, pas encore démarré, Actif : En cours, Terminé : Atteint, Annulé : Abandonné"
+        },
+        "targetDate": {
+          "type": "date",
+          "required": false,
+          "label": "Date d'échéance",
+          "constraint": "Date ne peut pas être dans le passé",
+          "description": "Date cible pour atteindre cet objectif"
+        },
+        "successCriteria": {
+          "type": "textarea",
+          "required": false,
+          "label": "Critères de succès",
+          "placeholder": "Comment mesurer le succès de cet objectif ?",
+          "description": "Définir comment mesurer l'atteinte (qualitatif)"
+        },
+        "kpis": {
+          "type": "textarea",
+          "required": false,
+          "label": "Indicateurs de performance (KPIs)",
+          "placeholder": "Ex: Taux de conversion mobile +15%, Temps de chargement <2s, Score NPS >50",
+          "description": "Métriques quantifiables"
+        }
+      }
+    },
+    "personas": {
+      "displayName": "Personas",
+      "description": "Profils utilisateurs types",
+      "fields": {
+        "productId": {
+          "type": "select",
+          "required": true,
+          "label": "Produit associé",
+          "relation": "products",
+          "filter": "status === 'active'",
+          "description": "Produit pour lequel vous créez ce persona"
+        },
+        "avatar": {
+          "type": "emoji",
+          "required": false,
+          "label": "Avatar / Emoji",
+          "default": "👤",
+          "options": ["👤", "👨‍💼", "👩‍💼", "👨‍💻", "👩‍💻", "👨‍🔬", "👩‍🔬", "👨‍🎓", "👩‍🎓", "👨‍⚕️", "👩‍⚕️", "👨‍🏫", "👩‍🏫", "🧑‍💼", "🧑‍💻"],
+          "description": "Représentation visuelle"
+        },
+        "name": {
+          "type": "string",
+          "required": true,
+          "label": "Nom du Persona",
+          "placeholder": "Ex: Marie, la Manager Pressée",
+          "description": "Nom représentatif"
+        },
+        "role": {
+          "type": "string",
+          "required": true,
+          "label": "Rôle / Métier",
+          "placeholder": "Ex: Chef de projet",
+          "description": "Fonction exercée"
+        },
+        "age": {
+          "type": "string",
+          "required": false,
+          "label": "Tranche d'âge",
+          "placeholder": "Ex: 35-45 ans",
+          "description": "Âge approximatif"
+        },
+        "demographic": {
+          "type": "string",
+          "required": false,
+          "label": "Démographie",
+          "description": "Informations démographiques"
+        },
+        "company": {
+          "type": "string",
+          "required": false,
+          "label": "Type d'entreprise",
+          "placeholder": "Ex: PME",
+          "description": "Contexte professionnel"
+        },
+        "seniority": {
+          "type": "string",
+          "required": false,
+          "label": "Ancienneté",
+          "placeholder": "Ex: 5-10 ans",
+          "description": "Expérience professionnelle"
+        },
+        "teamSize": {
+          "type": "string",
+          "required": false,
+          "label": "Taille équipe",
+          "placeholder": "Ex: 5-10 pers.",
+          "description": "Taille de l'équipe"
+        },
+        "goals": {
+          "type": "array",
+          "required": true,
+          "label": "Objectifs principaux",
+          "placeholder": "Ex: Gagner du temps",
+          "description": "Au moins un objectif requis"
+        },
+        "frustrations": {
+          "type": "array",
+          "required": false,
+          "label": "Frustrations",
+          "placeholder": "Ex: Trop de clics",
+          "description": "Points de douleur"
+        },
+        "motivations": {
+          "type": "array",
+          "required": false,
+          "label": "Motivations",
+          "placeholder": "Ex: Être reconnu",
+          "description": "Drivers"
+        },
+        "techLevel": {
+          "type": "select",
+          "required": false,
+          "label": "Niveau technique",
+          "default": "intermediate",
+          "options": ["novice", "intermediate", "expert"],
+          "description": "Compétence technique"
+        },
+        "preferredChannels": {
+          "type": "multiselect",
+          "required": false,
+          "label": "Canaux de communication",
+          "options": ["Email", "Téléphone", "Visioconférence", "Messagerie instantanée", "Face à face", "Documentation", "Tutoriels vidéo"],
+          "description": "Canaux préférés"
+        },
+        "usageFrequency": {
+          "type": "select",
+          "required": false,
+          "label": "Fréquence d'utilisation",
+          "default": "weekly",
+          "options": ["daily", "weekly", "monthly", "occasional"],
+          "description": "Fréquence d'usage"
+        },
+        "environment": {
+          "type": "string",
+          "required": false,
+          "label": "Environnement d'utilisation",
+          "placeholder": "Ex: Bureau, déplacements...",
+          "description": "Contexte d'usage"
+        },
+        "devices": {
+          "type": "multiselect",
+          "required": false,
+          "label": "Appareils utilisés",
+          "options": ["Ordinateur de bureau", "Ordinateur portable", "Tablette", "Smartphone", "Terminal mobile"],
+          "description": "Devices"
+        },
+        "quote": {
+          "type": "textarea",
+          "required": false,
+          "label": "Citation Signature",
+          "placeholder": "Une citation représentative de ce persona...",
+          "description": "Citation emblématique"
+        },
+        "isPrimary": {
+          "type": "boolean",
+          "required": false,
+          "label": "Persona primaire",
+          "default": false,
+          "description": "Persona principal"
+        },
+        "linkedContactIds": {
+          "type": "multiselect",
+          "required": false,
+          "label": "Contacts sources",
+          "relation": "contacts",
+          "description": "Contacts ayant inspiré ce persona"
+        },
+        "linkedNeedIds": {
+          "type": "multiselect",
+          "required": false,
+          "label": "Besoins liés",
+          "relation": "userNeeds",
+          "description": "Besoins associés"
+        },
+        "linkedInterviewIds": {
+          "type": "multiselect",
+          "required": false,
+          "label": "Entretiens sources",
+          "relation": "interviews",
+          "description": "Entretiens sources"
+        }
+      }
+    },
+    "interviews": {
+      "displayName": "Entretiens",
+      "description": "Entretiens utilisateurs",
+      "fields": {
+        "productId": {
+          "type": "select",
+          "required": true,
+          "label": "Produit associé",
+          "relation": "products",
+          "filter": "status === 'active'",
+          "description": "Produit concerné"
+        },
+        "title": {
+          "type": "string",
+          "required": true,
+          "label": "Titre",
+          "placeholder": "Ex: Entretien découverte - Marie Dupont",
+          "description": "Titre de l'entretien"
+        },
+        "type": {
+          "type": "select",
+          "required": false,
+          "label": "Type d'entretien",
+          "default": "custom",
+          "options": ["discovery", "validation", "feedback", "research", "custom"],
+          "description": "Découverte : Explorer, Validation : Valider, Feedback : Retours, Recherche : Étude, Personnalisé : Perso"
+        },
+        "interviewedContactIds": {
+          "type": "multiselect",
+          "required": true,
+          "label": "Interviewé(s)",
+          "relation": "contacts",
+          "description": "Au moins un participant requis"
+        },
+        "scheduledDate": {
+          "type": "datetime",
+          "required": false,
+          "label": "Date et heure",
+          "description": "Moment de l'entretien"
+        },
+        "duration": {
+          "type": "number",
+          "required": false,
+          "label": "Durée (min)",
+          "default": 60,
+          "min": 15,
+          "step": 15,
+          "description": "Durée en minutes"
+        },
+        "location": {
+          "type": "string",
+          "required": false,
+          "label": "Lieu",
+          "placeholder": "Ex: Visio, Bureau...",
+          "description": "Lieu de l'entretien"
+        },
+        "Objectives": {
+          "type": "textarea",
+          "required": false,
+          "label": "Objectif",
+          "placeholder": "Décrivez l'objectif principal...",
+          "description": "But de l'entretien"
+        },
+        "status": {
+          "type": "select",
+          "required": false,
+          "label": "Statut",
+          "default": "scheduled",
+          "options": ["scheduled", "in_progress", "completed", "cancelled"],
+          "description": "Planifié : En attente, En cours : En cours, Terminé : Réalisé, Annulé : Annulé"
+        },
+        "sections": {
+          "type": "nested_array",
+          "required": false,
+          "label": "Sections de questions",
+          "description": "Sections avec questions et réponses",
+          "structure": {
+            "title": "string",
+            "questions": [
+              {
+                "question": "string",
+                "answer": "string"
+              }
+            ]
+          }
+        },
+        "generalNotes": {
+          "type": "textarea",
+          "required": false,
+          "label": "Notes générales",
+          "placeholder": "Notes additionnelles...",
+          "description": "Notes complémentaires"
+        },
+        "linkedNeedIds": {
+          "type": "multiselect",
+          "required": false,
+          "label": "Besoins liés",
+          "relation": "userNeeds",
+          "description": "Besoins issus de l'entretien"
+        }
+      }
+    },
+    "userNeeds": {
+      "displayName": "Besoins Utilisateurs",
+      "description": "Besoins exprimés par les utilisateurs",
+      "fields": {
+        "productId": {
+          "type": "select",
+          "required": true,
+          "label": "Produit associé",
+          "relation": "products",
+          "filter": "status === 'active'",
+          "description": "Produit concerné"
+        },
+        "stakeholderIds": {
+          "type": "multiselect",
+          "required": true,
+          "label": "Stakeholders",
+          "relation": "contacts",
+          "description": "Au moins un stakeholder requis"
+        },
+        "primaryContactId": {
+          "type": "select",
+          "required": false,
+          "label": "Contact privilégié",
+          "relation": "contacts",
+          "description": "Contact principal"
+        },
+        "personaIds": {
+          "type": "multiselect",
+          "required": false,
+          "label": "Personas",
+          "relation": "personas",
+          "description": "Personas concernés"
+        },
+        "context": {
+          "type": "textarea",
+          "required": false,
+          "label": "Contexte",
+          "placeholder": "Contexte...",
+          "description": "Contexte du besoin (optionnel)"
+        },
+        "Objectives": {
+          "type": "textarea",
+          "required": true,
+          "label": "Objectif",
+          "placeholder": "Objectif...",
+          "readonly": "En édition, champ fixe après création",
+          "description": "Objectif du besoin (requis)"
+        },
+        "importance": {
+          "type": "select",
+          "required": false,
+          "label": "Importance",
+          "default": "medium",
+          "options": ["critical", "high", "medium", "low"],
+          "readonly": "En édition, modifiable uniquement via Vue Priorités",
+          "description": "Critique : Bloquant majeur, Haute : Priorité élevée, Moyenne : Importance modérée, Basse : Amélioration mineure"
+        },
+        "storyPoints": {
+          "type": "number",
+          "required": false,
+          "label": "Story Points",
+          "readonly": "Renseigné lors des sessions Planning Poker",
+          "description": "Estimation en points"
+        },
+        "linkedGoalId": {
+          "type": "select",
+          "required": false,
+          "label": "Objectif lié",
+          "relation": "objectives",
+          "description": "Objectif produit associé"
+        }
+      }
+    },
+    "userStories": {
+      "displayName": "User Stories",
+      "description": "Stories utilisateurs (format Agile)",
+      "fields": {
+        "productId": {
+          "type": "select",
+          "required": true,
+          "label": "Produit associé",
+          "relation": "products",
+          "filter": "status === 'active'",
+          "description": "Produit concerné"
+        },
+        "linkedNeedId": {
+          "type": "select",
+          "required": false,
+          "label": "Besoin Utilisateur Lié",
+          "relation": "userNeeds",
+          "description": "Traçabilité Entretien → Besoin → Story"
+        },
+        "storyNumber": {
+          "type": "string",
+          "required": true,
+          "label": "Numéro",
+          "placeholder": "ex: US-001",
+          "description": "Identifiant unique"
+        },
+        "storyTitle": {
+          "type": "string",
+          "required": true,
+          "label": "Titre court",
+          "placeholder": "ex: Connexion OAuth",
+          "description": "Résumé en quelques mots"
+        },
+        "userRole": {
+          "type": "string",
+          "required": true,
+          "label": "En tant que",
+          "placeholder": "ex: Product Owner, utilisateur mobile...",
+          "description": "Rôle utilisateur (obligatoire)"
+        },
+        "userAction": {
+          "type": "textarea",
+          "required": true,
+          "label": "Je veux",
+          "placeholder": "ex: prioriser mes stories selon la méthode MoSCoW",
+          "description": "Action/fonctionnalité (obligatoire)"
+        },
+        "userBenefit": {
+          "type": "textarea",
+          "required": true,
+          "label": "Afin de",
+          "placeholder": "ex: maximiser la valeur business livrée",
+          "description": "Bénéfice/valeur (obligatoire)"
+        },
+        "title": {
+          "type": "string",
+          "computed": true,
+          "formula": "En tant que {userRole}, je veux {userAction} afin de {userBenefit}",
+          "description": "Titre auto-généré"
+        },
+        "description": {
+          "type": "textarea",
+          "required": false,
+          "label": "Description complémentaire",
+          "placeholder": "Contexte supplémentaire, détails techniques, contraintes...",
+          "description": "Contexte technique (optionnel)"
+        },
+        "acceptanceCriteria": {
+          "type": "textarea",
+          "required": false,
+          "label": "Critères d'acceptation",
+          "placeholder": "- L'utilisateur peut...&#10;- Le système affiche...&#10;- Les données sont sauvegardées...",
+          "description": "Conditions de validation"
+        },
+        "priority": {
+          "type": "select",
+          "required": false,
+          "label": "Priorité MoSCoW",
+          "default": "should",
+          "options": ["must", "should", "could", "wont"],
+          "readonly": "Visualisation uniquement",
+          "description": "Must : Indispensable, Should : Important, Could : Souhaitable, Won't : Exclu"
+        },
+        "teamId": {
+          "type": "select",
+          "required": false,
+          "label": "Équipe responsable",
+          "relation": "teams",
+          "readonly": "En édition, assignation via Gestion des sprints uniquement",
+          "description": "Équipe assignée (optionnel à la création)"
+        },
+        "assignedTo": {
+          "type": "select",
+          "required": false,
+          "label": "Assigné à",
+          "relation": "contacts",
+          "description": "Membre responsable"
+        },
+        "estimation": {
+          "type": "number",
+          "required": false,
+          "label": "Estimation (story points)",
+          "default": 0,
+          "description": "Héritée du besoin ou laissée à 0"
+        },
+        "status": {
+          "type": "select",
+          "required": false,
+          "label": "Statut",
+          "default": "todo",
+          "options": ["todo", "inProgress", "done"],
+          "readonly": "Géré via Sprint Board",
+          "description": "À faire, En cours, Terminée"
+        },
+        "outcome": {
+          "type": "select",
+          "required": false,
+          "label": "Outcome (Résultat)",
+          "options": ["completed", "cancelled", "postponed"],
+          "readonly": "Géré uniquement via Sprint Board",
+          "description": "Réalisée, Annulée, Reportée"
+        },
+        "outcomeReason": {
+          "type": "string",
+          "required": false,
+          "label": "Raison de l'outcome",
+          "description": "Raison du résultat"
+        },
+        "outcomeNote": {
+          "type": "textarea",
+          "required": false,
+          "label": "Note sur l'outcome",
+          "description": "Détails"
+        },
+        "outcomeDate": {
+          "type": "datetime",
+          "required": false,
+          "label": "Date de l'outcome",
+          "description": "Date du résultat"
+        }
+      }
+    },
+    "sprints": {
+      "displayName": "Gestion des Sprints",
+      "description": "Planification et suivi des sprints",
+      "fields": {
+        "productId": {
+          "type": "select",
+          "required": true,
+          "label": "Produit associé",
+          "relation": "products",
+          "filter": "status === 'active'",
+          "description": "Produit concerné"
+        },
+        "teamId": {
+          "type": "select",
+          "required": true,
+          "label": "Équipe responsable",
+          "relation": "teams",
+          "filter": "status === 'active' AND productIds includes productId",
+          "description": "Équipe assignée au sprint (obligatoire)"
+        },
+        "sprintNumber": {
+          "type": "string",
+          "required": false,
+          "label": "Numéro d'identification",
+          "placeholder": "Sprint-01, S15",
+          "description": "Optionnel - Pour référence Jira"
+        },
+        "name": {
+          "type": "string",
+          "required": true,
+          "label": "Nom du sprint",
+          "placeholder": "Sprint 1",
+          "description": "Nom du sprint (obligatoire)"
+        },
+        "status": {
+          "type": "select",
+          "required": false,
+          "label": "Statut du sprint",
+          "default": "planned",
+          "options": ["planned", "active", "completed"],
+          "description": "Planifié : En préparation, En cours : Actif, Terminé : Achevé"
+        },
+        "startDate": {
+          "type": "date",
+          "required": true,
+          "label": "Date de début",
+          "description": "Date de début (obligatoire)"
+        },
+        "endDate": {
+          "type": "date",
+          "required": true,
+          "label": "Date de fin",
+          "constraint": "Durée recommandée : 7 à 28 jours (1-4 semaines)",
+          "description": "Date de fin (obligatoire)"
+        },
+        "goal": {
+          "type": "textarea",
+          "required": false,
+          "label": "Objectif du sprint",
+          "placeholder": "Décrivez l'objectif principal de ce sprint...",
+          "description": "Objectif clair et mesurable"
+        },
+        "storyIds": {
+          "type": "multiselect",
+          "required": false,
+          "label": "User Stories",
+          "relation": "userStories",
+          "filter": "productId === sprint.productId AND not assigned to other sprints",
+          "description": "Stories à réaliser (optionnel à la création)"
+        }
+      }
+    },
+    "tasks": {
+      "displayName": "Gestion des Tâches",
+      "description": "Décomposition technique des User Stories",
+      "fields": {
+        "userStoryId": {
+          "type": "select",
+          "required": true,
+          "label": "User Story associée",
+          "relation": "userStories",
+          "description": "Story que cette tâche décompose (obligatoire)"
+        },
+        "taskNumber": {
+          "type": "string",
+          "required": true,
+          "label": "Numéro d'identification",
+          "placeholder": "Ex: T-123, TASK-042",
+          "description": "Identifiant unique"
+        },
+        "type": {
+          "type": "select",
+          "required": false,
+          "label": "Type de tâche",
+          "default": "development",
+          "options": ["development", "testing", "review", "deployment", "documentation", "other"],
+          "description": "Développement, Tests, Revue, Déploiement, Documentation, Autre"
+        },
+        "title": {
+          "type": "string",
+          "required": true,
+          "label": "Titre de la tâche",
+          "placeholder": "Ex: Créer la page de connexion",
+          "description": "Titre court et explicite"
+        },
+        "description": {
+          "type": "textarea",
+          "required": false,
+          "label": "Description détaillée",
+          "placeholder": "Décrivez ce qui doit être fait techniquement : fichiers à modifier, approche technique, dépendances, etc.",
+          "description": "Détails techniques"
+        },
+        "assignedTo": {
+          "type": "select",
+          "required": true,
+          "label": "Assigné à",
+          "relation": "contacts",
+          "filter": "Si story a une équipe, seuls ses membres, sinon contacts internes",
+          "description": "Membre responsable (obligatoire)"
+        },
+        "estimatedHours": {
+          "type": "number",
+          "required": true,
+          "label": "Estimation (h)",
+          "min": 0,
+          "step": 0.5,
+          "placeholder": "0",
+          "description": "Temps estimé en heures (0.5, 1, 2, 4, 8...) - obligatoire"
+        },
+        "status": {
+          "type": "select",
+          "required": false,
+          "label": "Statut",
+          "default": "todo",
+          "options": ["todo", "inProgress", "done"],
+          "description": "À faire, En cours, Terminée"
+        },
+        "sprintId": {
+          "type": "string",
+          "computed": true,
+          "label": "Sprint associé",
+          "formula": "Hérité de la User Story",
+          "description": "Sprint hérité automatiquement"
+        },
+        "outcome": {
+          "type": "select",
+          "required": false,
+          "label": "Outcome",
+          "options": ["todo", "completed", "cancelled"],
+          "description": "À faire, Réalisée, Annulée"
+        },
+        "outcomeReason": {
+          "type": "string",
+          "required": false,
+          "label": "Raison de l'outcome",
+          "description": "Raison"
+        },
+        "outcomeNote": {
+          "type": "textarea",
+          "required": false,
+          "label": "Note sur l'outcome",
+          "description": "Détails"
+        }
+      }
+    },
+    "sprintReviews": {
+      "displayName": "Sprint Reviews",
+      "description": "Revues de sprint (démo stakeholders)",
+      "fields": {
+        "sprintId": {
+          "type": "select",
+          "required": true,
+          "label": "Sprint",
+          "relation": "sprints",
+          "description": "Sprint concerné (obligatoire)"
+        },
+        "reviewDate": {
+          "type": "datetime",
+          "required": true,
+          "label": "Date et heure de la review",
+          "default": "now",
+          "description": "Moment de la review (obligatoire)"
+        },
+        "status": {
+          "type": "select",
+          "required": false,
+          "label": "Statut",
+          "default": "scheduled",
+          "options": ["scheduled", "completed", "cancelled"],
+          "description": "Planifiée, Terminée, Annulée"
+        },
+        "participants": {
+          "type": "multiselect",
+          "required": false,
+          "label": "Participants",
+          "relation": "contacts",
+          "filter": "productIds includes sprint.productId",
+          "description": "Stakeholders présents"
+        },
+        "completedStoryIds": {
+          "type": "multiselect",
+          "required": false,
+          "label": "Stories Démontrées",
+          "relation": "userStories",
+          "filter": "sprintId === sprint.id AND status === 'done'",
+          "description": "Stories terminées présentées"
+        },
+        "demoNotes": {
+          "type": "textarea",
+          "required": false,
+          "label": "Notes de Démonstration",
+          "placeholder": "Notez les points importants présentés, les réactions, les questions...",
+          "description": "Compte-rendu de la démo"
+        },
+        "stakeholderFeedback": {
+          "type": "nested_array",
+          "required": false,
+          "label": "Feedback des Stakeholders",
+          "description": "Retours structurés",
+          "structure": {
+            "contactId": "select (contacts)",
+            "feedback": "textarea",
+            "priority": "select (low, medium, high, critical)",
+            "category": "select (feature, bug, usability, performance, other)"
+          }
+        },
+        "decisions": {
+          "type": "textarea",
+          "required": false,
+          "label": "Décisions Prises",
+          "placeholder": "Décisions importantes prises pendant la review...",
+          "description": "Décisions clés"
+        },
+        "nextStepsProductBacklog": {
+          "type": "textarea",
+          "required": false,
+          "label": "Prochaines Étapes - Product Backlog",
+          "placeholder": "Ajustements à faire dans le Product Backlog suite à cette review...",
+          "description": "Actions sur le backlog"
+        }
+      }
+    },
+    "sprintRetrospectives": {
+      "displayName": "Rétrospectives",
+      "description": "Rétrospectives de sprint (amélioration continue)",
+      "fields": {
+        "sprintId": {
+          "type": "select",
+          "required": true,
+          "label": "Sprint",
+          "relation": "sprints",
+          "description": "Sprint rétrospecté (obligatoire)"
+        },
+        "retroDate": {
+          "type": "datetime",
+          "required": true,
+          "label": "Date et heure de la rétrospective",
+          "default": "now",
+          "description": "Moment de la rétro (obligatoire)"
+        },
+        "status": {
+          "type": "select",
+          "required": false,
+          "label": "Statut",
+          "default": "scheduled",
+          "options": ["scheduled", "completed", "cancelled"],
+          "description": "Planifiée, Terminée, Annulée"
+        },
+        "participants": {
+          "type": "multiselect",
+          "required": false,
+          "label": "Participants",
+          "relation": "contacts",
+          "filter": "productIds includes sprint.productId",
+          "description": "Membres de l'équipe présents"
+        },
+        "whatWentWell": {
+          "type": "nested_array",
+          "required": false,
+          "label": "Ce qui s'est bien passé",
+          "description": "Succès du sprint avec dot-voting",
+          "structure": {
+            "id": "string (auto)",
+            "description": "string",
+            "votes": "number (default: 0)"
+          }
+        },
+        "whatNeedsImprovement": {
+          "type": "nested_array",
+          "required": false,
+          "label": "À améliorer",
+          "description": "Points de friction avec dot-voting",
+          "structure": {
+            "id": "string (auto)",
+            "description": "string",
+            "votes": "number (default: 0)"
+          }
+        },
+        "actionItems": {
+          "type": "nested_array",
+          "required": false,
+          "label": "Actions d'Amélioration",
+          "description": "Actions concrètes d'amélioration",
+          "structure": {
+            "id": "string (auto)",
+            "description": "string",
+            "priority": "select (low, medium, high, critical)",
+            "category": "select (process, tools, communication, technical, other)",
+            "assignedTo": "select (contacts)",
+            "dueDate": "date",
+            "notes": "string",
+            "status": "select (todo, inProgress, done)"
+          }
+        },
+        "nextSprintCommitments": {
+          "type": "textarea",
+          "required": false,
+          "label": "Engagements pour le Prochain Sprint",
+          "placeholder": "Ce que l'équipe s'engage à faire au prochain sprint...",
+          "description": "Engagements collectifs"
+        }
+      }
+    }
+  },
+  "fieldTypes": {
+    "string": "Texte court (une ligne)",
+    "textarea": "Texte long (multiligne)",
+    "email": "Email avec validation",
+    "tel": "Téléphone",
+    "number": "Nombre",
+    "date": "Date seule",
+    "datetime": "Date et heure",
+    "time": "Heure",
+    "boolean": "Case à cocher (true/false)",
+    "select": "Liste déroulante (choix unique)",
+    "multiselect": "Liste déroulante (choix multiple)",
+    "radio": "Boutons radio",
+    "checkbox": "Cases à cocher multiples",
+    "color": "Sélecteur de couleur",
+    "emoji": "Sélecteur d'emoji",
+    "array": "Liste d'éléments",
+    "nested_array": "Liste d'objets structurés",
+    "computed": "Champ calculé automatiquement"
+  },
+  "relations": {
+    "teams_to_products": "many-to-many",
+    "teams_to_contacts": "many-to-many (memberContactIds)",
+    "teams_to_contacts_lead": "one-to-many (leadContactId)",
+    "products_to_contacts_clients": "many-to-many (clientIds)",
+    "products_to_contacts_owner": "one-to-many (ownerId)",
+    "contacts_to_products": "many-to-many (productIds)",
+    "objectives_to_products": "many-to-one (productId)",
+    "personas_to_products": "many-to-one (productId)",
+    "personas_to_contacts": "many-to-many (linkedContactIds)",
+    "personas_to_userNeeds": "many-to-many (linkedNeedIds)",
+    "personas_to_interviews": "many-to-many (linkedInterviewIds)",
+    "interviews_to_products": "many-to-one (productId)",
+    "interviews_to_contacts": "many-to-many (interviewedContactIds)",
+    "interviews_to_userNeeds": "many-to-many (linkedNeedIds)",
+    "userNeeds_to_products": "many-to-one (productId)",
+    "userNeeds_to_contacts_stakeholders": "many-to-many (stakeholderIds)",
+    "userNeeds_to_contacts_primary": "one-to-many (primaryContactId)",
+    "userNeeds_to_personas": "many-to-many (personaIds)",
+    "userNeeds_to_objectives": "many-to-one (linkedGoalId)",
+    "userStories_to_products": "many-to-one (productId)",
+    "userStories_to_userNeeds": "many-to-one (linkedNeedId)",
+    "userStories_to_teams": "many-to-one (teamId)",
+    "userStories_to_contacts": "one-to-many (assignedTo)",
+    "sprints_to_products": "many-to-one (productId)",
+    "sprints_to_teams": "many-to-one (teamId)",
+    "sprints_to_userStories": "many-to-many (storyIds)",
+    "tasks_to_userStories": "many-to-one (userStoryId)",
+    "tasks_to_contacts": "one-to-many (assignedTo)",
+    "tasks_to_sprints": "many-to-one (sprintId, computed)",
+    "sprintReviews_to_sprints": "one-to-many (sprintId)",
+    "sprintReviews_to_contacts": "many-to-many (participants)",
+    "sprintReviews_to_userStories": "many-to-many (completedStoryIds)",
+    "sprintRetrospectives_to_sprints": "one-to-many (sprintId)",
+    "sprintRetrospectives_to_contacts": "many-to-many (participants)"
+  },
+  "commonPatterns": {
+    "productAssociation": {
+      "description": "Presque tous les modules nécessitent une association à un produit actif",
+      "modules": ["teams", "objectives", "personas", "interviews", "userNeeds", "userStories", "sprints"]
+    },
+    "contactMultiselect": {
+      "description": "Sélection multiple de contacts avec filtres contextuels",
+      "modules": ["teams", "products", "interviews", "userNeeds", "sprintReviews", "sprintRetrospectives"]
+    },
+    "statusWorkflow": {
+      "description": "Gestion de statuts avec transitions",
+      "modules": ["teams", "products", "objectives", "interviews", "userStories", "tasks", "sprints", "sprintReviews", "sprintRetrospectives"]
+    },
+    "dotVoting": {
+      "description": "Système de vote (+/-) pour priorisation",
+      "modules": ["sprintRetrospectives"]
+    },
+    "outcomes": {
+      "description": "Résultats finaux avec raison et notes",
+      "modules": ["userStories", "tasks"]
+    }
+  },
+  "validationRules": {
+    "dateConstraints": {
+      "futureOnly": ["objectives.targetDate"],
+      "pastAllowed": ["products.startDate", "products.plannedEndDate", "products.expectedEndDate", "products.actualEndDate"],
+      "dateRange": {
+        "sprints": "endDate must be after startDate, recommended 7-28 days",
+        "contacts": "endDate must be after startDate if both provided"
+      }
+    },
+    "requiredIfParent": {
+      "tasks.assignedTo": "Required and filtered by story's team if story has teamId",
+      "userStories.teamId": "Optional at creation, readonly after creation (managed via sprint)"
+    },
+    "computed": {
+      "userStories.title": "Auto-generated from userRole + userAction + userBenefit",
+      "tasks.sprintId": "Inherited from linked userStory",
+      "contacts.adjustedCapacity": "(capacity * availability * workload) / 10000",
+      "teams.teamCapacity": "Sum of all members' adjustedCapacity"
+    }
+  }
+}
