@@ -6,8 +6,20 @@ Une application web complète pour Product Owners qui couvre l'intégralité du 
 
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/bechetbrice/ProductOwnerApp)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![React](https://img.shields.io/badge/react-18.2.0-61dafb.svg)](https://reactjs.org/)
-[![Vite](https://img.shields.io/badge/vite-5.0.8-646cff.svg)](https://vitejs.dev/)
+
+<!-- Status -->
+![Build](https://img.shields.io/badge/build-passing-brightgreen)
+![Score](https://img.shields.io/badge/score-8.9%2F10-success)
+
+<!-- Tech Stack -->
+![React](https://img.shields.io/badge/React-18.2-61dafb)
+![Vite](https://img.shields.io/badge/Vite-5.0.8-646CFF)
+![Tailwind](https://img.shields.io/badge/Tailwind-3.4-38bdf8)
+
+<!-- Features -->
+![Offline](https://img.shields.io/badge/offline-first-orange)
+![PWA](https://img.shields.io/badge/PWA-enabled-5A0FC8)
+![Tests](https://img.shields.io/badge/tests-84%2F84-success)
 
 ---
 
