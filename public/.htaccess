@@ -1,0 +1,82 @@
+# ============================================================
+# ProductOwnerApp - .htaccess
+# Localisation OVH : /www/ProductOwnerApp/.htaccess
+# ============================================================
+# FIX 18/04/2026 : suppression du force-HTTPS self-referencing
+# qui causait ERR_TOO_MANY_REDIRECTS.
+#
+# Raison : sur l'hebergement mutualise OVH, le HTTPS est termine
+# au niveau du frontal OVHcloud. Apache backend recoit la requete
+# en HTTP (HTTPS=off). Une regle "RewriteCond %{HTTPS} off" + RewriteRule
+# vers https:// declenche donc a chaque requete = boucle infinie.
+#
+# Le force-HTTPS est deja gere par le HSTS et la redirection OVHcloud
+# au niveau du domaine. Pas besoin de le redoubler ici.
+# ============================================================
+
+RewriteEngine On
+RewriteBase /ProductOwnerApp/
+
+# ============================================================
+# Securite fichiers caches
+# ============================================================
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# ============================================================
+# SPA fallback : si le fichier ou dossier demande n'existe pas,
+# servir index.html (mais NE PAS rediriger les requetes existantes)
+# ============================================================
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
+
+# ============================================================
+# MIME types
+# ============================================================
+<IfModule mod_mime.c>
+  AddType application/javascript .js .mjs
+  AddType application/manifest+json .webmanifest
+</IfModule>
+
+# ============================================================
+# Compression
+# ============================================================
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ============================================================
+# Cache assets (1 an pour fichiers hashes Vite)
+# ============================================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 6 months"
+</IfModule>
+
+# ============================================================
+# Headers securite + cache HTML
+# ============================================================
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # HTML : revalidation obligatoire (evite les service workers perimes)
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+
+  # Service Worker : jamais cacher
+  <FilesMatch "service-worker\.js$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </FilesMatch>
+</IfModule>

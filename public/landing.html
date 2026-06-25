@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ProductOwner App — L'outil Agile tout-en-un avec 26+ modules. Sprint Board, Backlog, Analytics, RICE, MoSCoW, OKRs. 100% offline, gratuit, open source.">
+  <meta name="keywords" content="product owner, agile, scrum, sprint, backlog, user stories, kanban, offline, open source, PWA">
+  <meta name="author" content="Brice Béchet">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="ProductOwner App — L'outil Agile tout-en-un, 100% Offline">
+  <meta property="og:description" content="26+ modules Agile, Sprint Board, Analytics, RICE, MoSCoW, OKRs. Gratuit, sans inscription, sans cloud. Open Source.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bricebechet.pro/productownerapp/">
+
+  <title>ProductOwner App — L'outil Agile tout-en-un, 100% Offline</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1TFK304XB7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1TFK304XB7');
+  </script>
+
+  <!-- Local Fonts -->
+  <style>
+    @font-face { font-family: 'Space Grotesk'; src: url('/fonts/space-grotesk-latin.woff2') format('woff2'); font-weight: 300 700; font-display: swap; }
+    @font-face { font-family: 'Source Serif 4'; src: url('/fonts/source-serif-4-latin.woff2') format('woff2'); font-weight: 300 700; font-display: swap; }
+    @font-face { font-family: 'Lora'; src: url('/fonts/lora-latin.woff2') format('woff2'); font-weight: 400 700; font-display: swap; }
+  </style>
+
+  <style>
+    /* ========== RESET & BASE ========== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Source Serif 4', 'Lora', Georgia, serif;
+      color: #1a1a2e;
+      background: #fff;
+      line-height: 1.6;
+      padding-top: 5rem;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', system-ui, sans-serif; line-height: 1.2; }
+
+    /* ========== LAYOUT ========== */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+    /* ========== HEADER ========== */
+    .header {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: #fff;
+      z-index: 100;
+      padding: 1rem 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .header .container { display: flex; align-items: center; justify-content: space-between; }
+    .logo-link { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-name { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 1.5rem; font-weight: 700; color: #1a1a2e; }
+    .logo-tagline { font-size: 0.68rem; color: #FFC823; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; font-family: 'Space Grotesk', system-ui, sans-serif; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; color: #667fa0; font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 500; font-size: 0.9rem; transition: color 0.2s; border-bottom: 2px solid transparent; padding-bottom: 2px; }
+    .nav-links a:hover { color: #1a1a2e; border-bottom-color: #FFC823; }
+    .nav-social a { display: flex; align-items: center; }
+    .nav-social svg { color: #667fa0; transition: color 0.2s; }
+    .nav-social a:hover svg { color: #1a1a2e; }
+    .nav-toggle { display: none; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: #1a1a2e; border-radius: 2px; transition: all 0.3s; }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      background: #1a1a2e;
+      color: rgba(255,255,255,0.6);
+      padding: 3rem 0 1.5rem;
+      border-top: 3px solid #FFC823;
+    }
+    .footer-simple { display: flex; justify-content: space-between; align-items: flex-start; }
+    .footer-simple__left .logo-name-footer { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 1.25rem; font-weight: 700; color: #fff; }
+    .footer-simple__left p { margin-top: 0.3rem; font-size: 0.9rem; }
+    .footer-copyright { margin-top: 1rem; font-size: 0.8rem; opacity: 0.5; }
+    .footer-simple__right { display: flex; flex-direction: column; gap: 0.6rem; align-items: flex-end; }
+    .footer-simple__right a { color: #fff; text-decoration: none; font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 0.9rem; transition: opacity 0.2s; }
+    .footer-simple__right a:hover { opacity: 0.7; }
+
+    /* ========== POA COLORS ========== */
+    :root {
+      --poa-primary: #10b981;
+      --poa-secondary: #14b8a6;
+      --poa-accent: #06b6d4;
+      --poa-gradient: linear-gradient(135deg, #10b981, #14b8a6, #06b6d4);
+      --poa-btn-gradient: linear-gradient(135deg, #10b981, #14b8a6);
+    }
+    .gradient-text {
+      background: var(--poa-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      padding: 5rem 0 4rem;
+      background: linear-gradient(170deg, #ecfdf5 0%, #fff 50%, #ecfeff 100%);
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.02em;
+    }
+    .hero .subtitle {
+      font-size: 1.25rem;
+      color: #555;
+      max-width: 680px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+    .hero-stat {
+      text-align: center;
+    }
+    .hero-stat .stat-value {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: var(--poa-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-stat .stat-label {
+      font-size: 0.9rem;
+      color: #667fa0;
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+    }
+    .hero-ctas {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--poa-btn-gradient);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--poa-primary);
+      border: 2px solid var(--poa-primary);
+    }
+    .btn-secondary:hover {
+      background: var(--poa-primary);
+      color: #fff;
+    }
+
+    /* ========== SECTION COMMON ========== */
+    .section { padding: 5rem 0; }
+    .section-alt { background: #f8fdfb; }
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 0.75rem;
+    }
+    .section-desc {
+      text-align: center;
+      color: #667fa0;
+      max-width: 620px;
+      margin: 0 auto 3rem;
+      font-size: 1.05rem;
+    }
+
+    /* ========== CHALLENGE CARDS (Le defi) ========== */
+    .challenge-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .challenge-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid #e8ecf2;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .challenge-card:hover {
+      border-color: var(--poa-primary);
+      box-shadow: 0 8px 30px rgba(16, 185, 129, 0.08);
+      transform: translateY(-3px);
+    }
+    .challenge-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+      background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(6,182,212,0.1));
+      color: var(--poa-primary);
+    }
+    .challenge-icon svg { width: 28px; height: 28px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .challenge-card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      color: #1a1a2e;
+    }
+    .challenge-card p {
+      font-size: 0.95rem;
+      color: #667fa0;
+      line-height: 1.6;
+    }
+
+    /* ========== MODULES / CATEGORIES ========== */
+    .categories-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .category-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .category-label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 0;
+    }
+    .category-number {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--poa-btn-gradient);
+      color: #fff;
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .category-name {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #1a1a2e;
+    }
+    .category-modules {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      padding: 0.75rem 0;
+    }
+    .module-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.5rem 1rem;
+      background: #fff;
+      border: 1px solid #e0e5ee;
+      border-radius: 8px;
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #3a3f5c;
+      transition: all 0.2s;
+    }
+    .module-tag:hover {
+      border-color: var(--poa-primary);
+      background: rgba(16, 185, 129, 0.04);
+    }
+    .module-tag .tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .cat-1 .tag-dot { background: #10b981; }
+    .cat-2 .tag-dot { background: #14b8a6; }
+    .cat-3 .tag-dot { background: #06b6d4; }
+    .cat-4 .tag-dot { background: #0891b2; }
+    .cat-5 .tag-dot { background: #0d9488; }
+
+    /* ========== TECH CARDS ========== */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .tech-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid #e8ecf2;
+      transition: all 0.3s ease;
+    }
+    .tech-card:hover {
+      border-color: var(--poa-primary);
+      box-shadow: 0 8px 30px rgba(16, 185, 129, 0.08);
+      transform: translateY(-3px);
+    }
+    .tech-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(6,182,212,0.1));
+      color: var(--poa-primary);
+    }
+    .tech-icon svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .tech-card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      color: #1a1a2e;
+    }
+    .tech-card p {
+      font-size: 0.95rem;
+      color: #667fa0;
+      line-height: 1.6;
+    }
+
+    /* ========== CTA FINAL ========== */
+    .cta-final {
+      padding: 5rem 0;
+      background: var(--poa-gradient);
+      text-align: center;
+    }
+    .cta-final h2 {
+      font-size: 2.2rem;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .cta-final p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-final-btns {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-white {
+      background: #fff;
+      color: var(--poa-primary);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    }
+    .btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+    .btn-outline-white {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.6);
+    }
+    .btn-outline-white:hover {
+      background: rgba(255,255,255,0.15);
+      border-color: #fff;
+    }
+
+    /* ========== ANIMATIONS ========== */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-in {
+      animation: fadeInUp 0.6s ease-out both;
+    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+
+    /* ========== MOBILE RESPONSIVE ========== */
+    @media (max-width: 900px) {
+      .challenge-grid, .tech-grid { grid-template-columns: repeat(2, 1fr); }
+      .category-row { grid-template-columns: 1fr; gap: 0.5rem; }
+      .category-label { padding: 0.5rem 0 0; }
+      .footer-simple { flex-direction: column; gap: 2rem; }
+      .footer-simple__right { align-items: flex-start; }
+    }
+
+    @media (max-width: 768px) {
+      body { padding-top: 4rem; }
+      .header { padding: 0.75rem 0; }
+      .container { padding: 0 1.25rem; }
+
+      /* Hamburger menu */
+      .nav-hamburger { display: flex; }
+      .header nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: #fff;
+        box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+        padding: 5rem 2rem 2rem;
+        transition: right 0.3s ease;
+        z-index: 99;
+      }
+      .nav-toggle:checked ~ nav { right: 0; }
+      .nav-toggle:checked ~ .nav-hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .nav-toggle:checked ~ .nav-hamburger span:nth-child(2) { opacity: 0; }
+      .nav-toggle:checked ~ .nav-hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+      .nav-links { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
+      .nav-links a { font-size: 1rem; }
+
+      /* Hero mobile */
+      .hero { padding: 3rem 0; }
+      .hero h1 { font-size: 2rem; }
+      .hero .subtitle { font-size: 1.05rem; }
+      .hero-stats { gap: 1.5rem; }
+      .hero-stat .stat-value { font-size: 1.8rem; }
+
+      /* Sections */
+      .section { padding: 3.5rem 0; }
+      .section-title { font-size: 1.7rem; }
+      .challenge-grid, .tech-grid { grid-template-columns: 1fr; }
+      .cta-final h2 { font-size: 1.7rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.65rem; }
+      .hero-stats { gap: 1rem; }
+      .hero-ctas, .cta-final-btns { flex-direction: column; align-items: center; }
+      .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="header">
+  <div class="container">
+    <a href="https://bricebechet.pro" class="logo-link">
+      <div class="logo-text">
+        <span class="logo-name">Brice Béchet</span>
+        <span class="logo-tagline">CONSULTANT EN PILOTAGE DES ORGANISATIONS</span>
+      </div>
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+    <label for="nav-toggle" class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></label>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="https://bricebechet.pro/offres">Offres</a></li>
+        <li><a href="https://bricebechet.pro/realisations">Réalisations</a></li>
+        <li><a href="https://bricebechet.pro/a-propos">À propos</a></li>
+        <li><a href="https://bricebechet.pro/blog">Études &amp; Réflexions</a></li>
+        <li><a href="https://bricebechet.pro/contact">Contact</a></li>
+        <li class="nav-social"><a href="https://www.linkedin.com/in/brice-b%C3%A9chet-reims/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="container">
+    <h1 class="animate-in"><span class="gradient-text">ProductOwner App</span> — L'outil Agile tout-en-un</h1>
+    <p class="subtitle animate-in delay-1">26+ modules pour piloter vos produits en mode Agile. Sprint Board, Backlog, Analytics, RICE, MoSCoW, OKRs. 100% offline, gratuit et open source.</p>
+
+    <div class="hero-stats animate-in delay-2">
+      <div class="hero-stat">
+        <div class="stat-value">26+</div>
+        <div class="stat-label">modules</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-value">100%</div>
+        <div class="stat-label">offline</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-value">0 &euro;</div>
+        <div class="stat-label">gratuit</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-value">Open</div>
+        <div class="stat-label">Source</div>
+      </div>
+    </div>
+
+    <div class="hero-ctas animate-in delay-3">
+      <a href="/productownerapp/index.html" class="btn btn-primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Lancer l'application
+      </a>
+      <a href="https://github.com/bechetbrice/ProductOwnerApp" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        Voir sur GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LE DEFI ========== -->
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Le <span class="gradient-text">défi</span></h2>
+    <p class="section-desc">Les Product Owners font face à des obstacles récurrents qui freinent leur efficacité au quotidien.</p>
+
+    <div class="challenge-grid">
+      <!-- Card 1 -->
+      <div class="challenge-card">
+        <div class="challenge-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </div>
+        <h3>Outils dispersés</h3>
+        <p>Jira pour le backlog, Miro pour les retros, Excel pour les analytics, Confluence pour la doc. Un écosystème fragmenté qui nuit à la productivité.</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="challenge-card">
+        <div class="challenge-icon">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3>Coûts élevés</h3>
+        <p>Les licences s'accumulent : 10 à 50 € par utilisateur et par mois, par outil. Pour une équipe, la facture devient vite prohibitive.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="challenge-card">
+        <div class="challenge-icon">
+          <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h3>Dépendance réseau</h3>
+        <p>Sans connexion, plus d'accès aux données. En déplacement, en atelier ou en zone blanche, vous êtes bloqué.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== MODULES ========== -->
+<section id="modules" class="section">
+  <div class="container">
+    <h2 class="section-title">5 catégories, <span class="gradient-text">26+ modules</span></h2>
+    <p class="section-desc">Un outil complet qui couvre l'intégralité du cycle de vie produit Agile, du backlog au bilan de sprint.</p>
+
+    <div class="categories-container">
+      <!-- Category 1 -->
+      <div class="category-row">
+        <div class="category-label">
+          <div class="category-number">1</div>
+          <div class="category-name">Pilotage produit</div>
+        </div>
+        <div class="category-modules cat-1">
+          <span class="module-tag"><span class="tag-dot"></span>Dashboard</span>
+          <span class="module-tag"><span class="tag-dot"></span>Products</span>
+          <span class="module-tag"><span class="tag-dot"></span>Roadmap</span>
+          <span class="module-tag"><span class="tag-dot"></span>OKRs</span>
+          <span class="module-tag"><span class="tag-dot"></span>Analytics</span>
+        </div>
+      </div>
+
+      <!-- Category 2 -->
+      <div class="category-row">
+        <div class="category-label">
+          <div class="category-number">2</div>
+          <div class="category-name">Backlog &amp; Stories</div>
+        </div>
+        <div class="category-modules cat-2">
+          <span class="module-tag"><span class="tag-dot"></span>User Stories</span>
+          <span class="module-tag"><span class="tag-dot"></span>Backlog Management</span>
+          <span class="module-tag"><span class="tag-dot"></span>RICE Prioritization</span>
+          <span class="module-tag"><span class="tag-dot"></span>MoSCoW</span>
+          <span class="module-tag"><span class="tag-dot"></span>Task Board</span>
+        </div>
+      </div>
+
+      <!-- Category 3 -->
+      <div class="category-row">
+        <div class="category-label">
+          <div class="category-number">3</div>
+          <div class="category-name">Sprints &amp; Cérémonies</div>
+        </div>
+        <div class="category-modules cat-3">
+          <span class="module-tag"><span class="tag-dot"></span>Sprint Board</span>
+          <span class="module-tag"><span class="tag-dot"></span>Sprint Planning</span>
+          <span class="module-tag"><span class="tag-dot"></span>Sprint Reviews</span>
+          <span class="module-tag"><span class="tag-dot"></span>Sprint Retrospectives</span>
+          <span class="module-tag"><span class="tag-dot"></span>Planning Poker</span>
+        </div>
+      </div>
+
+      <!-- Category 4 -->
+      <div class="category-row">
+        <div class="category-label">
+          <div class="category-number">4</div>
+          <div class="category-name">Discovery &amp; Équipes</div>
+        </div>
+        <div class="category-modules cat-4">
+          <span class="module-tag"><span class="tag-dot"></span>Personas</span>
+          <span class="module-tag"><span class="tag-dot"></span>User Needs / Interviews</span>
+          <span class="module-tag"><span class="tag-dot"></span>Teams</span>
+          <span class="module-tag"><span class="tag-dot"></span>Contacts / Stakeholders</span>
+        </div>
+      </div>
+
+      <!-- Category 5 -->
+      <div class="category-row">
+        <div class="category-label">
+          <div class="category-number">5</div>
+          <div class="category-name">Outils &amp; Support</div>
+        </div>
+        <div class="category-modules cat-5">
+          <span class="module-tag"><span class="tag-dot"></span>Wiki / Documentation</span>
+          <span class="module-tag"><span class="tag-dot"></span>Budget Manager</span>
+          <span class="module-tag"><span class="tag-dot"></span>Import / Export</span>
+          <span class="module-tag"><span class="tag-dot"></span>Settings</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ARCHITECTURE TECHNIQUE ========== -->
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Architecture <span class="gradient-text">technique</span></h2>
+    <p class="section-desc">Des choix technologiques modernes au service de la performance, de l'autonomie et de l'expérience utilisateur.</p>
+
+    <div class="tech-grid">
+      <!-- Card 1 -->
+      <div class="tech-card">
+        <div class="tech-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h3>React 18</h3>
+        <p>Interface réactive et performante construite avec React 18, offrant une expérience utilisateur fluide et moderne.</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="tech-card">
+        <div class="tech-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>PWA + Service Workers</h3>
+        <p>Application installable qui fonctionne sans connexion. Les Service Workers garantissent un accès permanent à vos données.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="tech-card">
+        <div class="tech-icon">
+          <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        </div>
+        <h3>IndexedDB</h3>
+        <p>Stockage local haute performance. Vos données restent sur votre appareil, sans aucune dépendance à un serveur distant.</p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="tech-card">
+        <div class="tech-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Tailwind CSS</h3>
+        <p>Design system utilitaire pour une interface cohérente, responsive et esthétique sur tous les écrans.</p>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="tech-card">
+        <div class="tech-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Recharts</h3>
+        <p>Graphiques interactifs pour le burndown chart, la vélocité, le cycle time et tous les indicateurs Agile essentiels.</p>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="tech-card">
+        <div class="tech-icon">
+          <svg viewBox="0 0 24 24"><polyline points="5 9 2 12 5 15"/><polyline points="9 5 12 2 15 5"/><polyline points="19 9 22 12 19 15"/><polyline points="9 19 12 22 15 19"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/></svg>
+        </div>
+        <h3>Drag &amp; Drop</h3>
+        <p>Glisser-déposer natif avec @hello-pangea/dnd pour organiser vos sprints, backlogs et tableaux en toute fluidité.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA FINAL ========== -->
+<section class="cta-final">
+  <div class="container">
+    <h2>Prêt à piloter vos produits en mode Agile ?</h2>
+    <p>Lancez l'application et commencez immédiatement. Rien à installer, rien à payer, aucune inscription requise.</p>
+    <div class="cta-final-btns">
+      <a href="/productownerapp/index.html" class="btn btn-white">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Lancer l'application
+      </a>
+      <a href="https://github.com/bechetbrice/ProductOwnerApp" target="_blank" rel="noopener noreferrer" class="btn btn-outline-white">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        Voir sur GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-simple">
+      <div class="footer-simple__left">
+        <div class="logo-name-footer">Brice Béchet</div>
+        <p>Consultant en pilotage des organisations</p>
+        <p class="footer-copyright">&copy; 2026 Brice Béchet</p>
+      </div>
+      <nav class="footer-simple__right">
+        <a href="https://bricebechet.pro/offres">Offres</a>
+        <a href="https://bricebechet.pro/a-propos">À propos</a>
+        <a href="https://bricebechet.pro/mentions-legales">Mentions légales</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
