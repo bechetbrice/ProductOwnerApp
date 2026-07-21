@@ -1,4 +1,12 @@
 # Git attributes pour ProductOwnerApp
+
+# Fins de ligne — normalisation LF (21/07/2026)
+# Sequelle de la migration Windows -> Linux : l'arbre de travail etait passe
+# en CRLF alors que le depot est en LF, ce qui faisait apparaitre 348 fichiers
+# comme modifies en permanence et noyait tout diff reel. Cette directive fige
+# LF cote depot ET cote arbre de travail.
+* text=auto eol=lf
+
 # Force la détection des langages
 
 # Fichiers JavaScript/JSX - langage principal
