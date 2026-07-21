@@ -296,14 +296,14 @@ percentage = ((totalSize / 1024 / 1024) / maxSizeMB * 100).toFixed(2);`}
             <div className="bg-cyan-50 border border-cyan-100 rounded-lg p-4">
               <h3 className="font-medium text-gray-900 mb-2">📄 Section 1 : Éditeur de l'application</h3>
               <p className="text-sm text-gray-700">
-                Brice Béchet • 1 rue Charlier, 51100 Reims • bechetbrice@hotmail.com • LinkedIn
+                Brice Béchet • 1 rue Charlier, 51100 Reims • contact@bricebechet.pro • LinkedIn
               </p>
             </div>
 
             <div className="bg-teal-50 border border-teal-100 rounded-lg p-4">
               <h3 className="font-medium text-gray-900 mb-2">🖥️ Section 2 : Hébergement</h3>
               <p className="text-sm text-gray-700">
-                Site : coolabflow.fr • Hébergeur : OVH SAS • 2 rue Kellermann, 59100 Roubaix • www.ovh.com
+                Site : bricebechet.pro • Hébergeur : OVH SAS • 2 rue Kellermann, 59100 Roubaix • www.ovh.com
               </p>
             </div>
 
@@ -342,7 +342,7 @@ percentage = ((totalSize / 1024 / 1024) / maxSizeMB * 100).toFixed(2);`}
             <div className="bg-teal-50 border border-teal-100 rounded-lg p-4">
               <h3 className="font-medium text-gray-900 mb-2">📧 Section 7 : Contact</h3>
               <p className="text-sm text-gray-700">
-                Email : bechetbrice@hotmail.com • LinkedIn : linkedin.com/in/brice-béchet-reims • 
+                Email : contact@bricebechet.pro • LinkedIn : linkedin.com/in/brice-béchet-reims • 
                 Courrier : 1 rue Charlier, 51100 Reims • Délai réponse : 30 jours max
               </p>
             </div>

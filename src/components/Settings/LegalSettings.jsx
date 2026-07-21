@@ -88,11 +88,11 @@ const LegalSettings = () => {
                 <p className="font-semibold text-gray-700 dark:text-gray-300 mb-2">Contact</p>
                 <div className="space-y-2">
                   <a 
-                    href="mailto:bechetbrice@hotmail.com"
+                    href="mailto:contact@bricebechet.pro"
                     className="flex items-center gap-2 text-teal-600 dark:text-teal-400 hover:underline"
                   >
                     <Mail className="w-4 h-4" />
-                    bechetbrice@hotmail.com
+                    contact@bricebechet.pro
                   </a>
                   <a 
                     href="https://linkedin.com/in/brice-béchet-reims"
@@ -140,12 +140,12 @@ const LegalSettings = () => {
               <div>
                 <p className="font-semibold text-gray-700 dark:text-gray-300 mb-1">Site web</p>
                 <a 
-                  href="https://coolabflow.fr"
+                  href="https://bricebechet.pro"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-teal-600 dark:text-teal-400 hover:underline inline-flex items-center gap-1"
                 >
-                  coolabflow.fr
+                  bricebechet.pro
                   <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
@@ -214,7 +214,7 @@ const LegalSettings = () => {
               <p className="text-sm text-gray-700 dark:text-gray-300">
                 Brice Béchet<br />
                 1 rue Charlier, 51100 Reims<br />
-                Email : bechetbrice@hotmail.com
+                Email : contact@bricebechet.pro
               </p>
             </div>
 
@@ -280,7 +280,7 @@ const LegalSettings = () => {
                 Pour toute question relative à la protection des données, vous pouvez contacter :
               </p>
               <p className="text-sm text-gray-700 dark:text-gray-300">
-                Email : bechetbrice@hotmail.com<br />
+                Email : contact@bricebechet.pro<br />
                 Délai de réponse : 1 mois maximum (conformément à l'article 12 du RGPD)
               </p>
             </div>
@@ -616,11 +616,11 @@ const LegalSettings = () => {
               <div className="space-y-2">
                 <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">Contact</p>
                 <a 
-                  href="mailto:bechetbrice@hotmail.com"
+                  href="mailto:contact@bricebechet.pro"
                   className="flex items-center gap-2 text-sm text-teal-600 dark:text-teal-400 hover:underline"
                 >
                   <Mail className="w-4 h-4" />
-                  bechetbrice@hotmail.com
+                  contact@bricebechet.pro
                 </a>
                 <a 
                   href="https://linkedin.com/in/brice-béchet-reims"

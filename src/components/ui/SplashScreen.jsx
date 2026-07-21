@@ -14,7 +14,7 @@ import PropTypes from 'prop-types';
  * - Messages de chargement progressifs
  * - Barre de progression animée
  * - Message de remerciement
- * - Lien vers coolabflow.fr
+ * - Lien vers bricebechet.pro
  * 
  * @component
  * @example
@@ -83,16 +83,16 @@ const SplashScreen = ({ message = 'Chargement...', progress = 0 }) => {
           </p>
         </div>
 
-        {/* Powered by CoolabFlow */}
+        {/* Powered by CoLabFlow */}
         <div className="mb-8 animate-fade-in-delayed-2">
           <a 
-            href="https://coolabflow.fr" 
+            href="https://bricebechet.pro" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-white/80 text-sm hover:text-white transition-colors duration-200 flex items-center gap-2 group"
           >
             <span className="inline-block w-2 h-2 bg-white/60 rounded-full group-hover:bg-white transition-colors"></span>
-            coolabflow.fr
+            bricebechet.pro
             <span className="inline-block w-2 h-2 bg-white/60 rounded-full group-hover:bg-white transition-colors"></span>
           </a>
         </div>
